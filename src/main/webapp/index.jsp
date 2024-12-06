@@ -1,8 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 17 nov 2024, 22:14:46
-    Author     : RiveraDev
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +9,7 @@
     <body>
         <% 
         
-            response.sendRedirect("/SistemaDolmarBike/Dashboard.jsp");
+            response.sendRedirect("/SistemaDolmarBike/login.jsp");
         
         %>
         
