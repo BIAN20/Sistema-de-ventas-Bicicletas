@@ -11,13 +11,13 @@
     <div class="login-container">
         <!-- Parte izquierda con el logo -->
         <div class="left-section">
-            <img src="img/onconor_logo.jpg" alt="Logo DolmarBike" class="logo">
+            <img src="Images/logoDolmarBike.jpg" alt="Logo DolmarBike" class="logo">
         </div>
         <div class="line"></div> <!-- Línea vertical -->
         <!-- Parte derecha con el formulario -->
         <div class="right-section">
             <!-- Mueve la imagen del logo aquí para que esté sobre el formulario -->
-            <img src="img/onconor_logo.jpg" alt="Logo DolmarBike" class="logo mobile-logo">
+            <img src="Images/logoDolmarBike.jpg" alt="Logo DolmarBike" class="logo mobile-logo" width="40px" height="40px">
             <h2>LOGIN</h2>
             
             <!-- Mostrar mensaje de error si las credenciales son incorrectas -->
