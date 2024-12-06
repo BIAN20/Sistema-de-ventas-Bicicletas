@@ -66,9 +66,6 @@ public class Producto extends CategoriaProducto {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    
-    
+    }  
     
 }

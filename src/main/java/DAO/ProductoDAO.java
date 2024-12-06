@@ -1,6 +1,6 @@
-
 package DAO;
 
+import Model.CategoriaProducto;
 import Model.Producto;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDAO {
-    
+
     PreparedStatement ps;
     CallableStatement cs;
     ResultSet rs;
     Connection con;
     Conexion cn = new Conexion();
-    
-    
-     public List<Producto> listarProductos() {
+
+    public List<Producto> listarProductos() {
         ArrayList<Producto> listar = new ArrayList<>();
         String sql = "{CALL ListarProductos()}";
         try {
@@ -34,7 +33,7 @@ public class ProductoDAO {
                 pro.setPrecio(rs.getDouble(4));
                 pro.setStock(rs.getInt(5));
                 pro.setDescripcion(rs.getString(6));
-               
+
                 listar.add(pro);
             }
         } catch (SQLException e) {
@@ -57,9 +56,9 @@ public class ProductoDAO {
         }
         return listar;
     }
-    
-    public void registrarProducto(String nombre, double precio , int stock , String descripcion) throws SQLException {
-        String sql = "{CALL RegistrarProducto(?, ?, ?, ?, ?, ?, ?, ?)}";
+
+    public void registrarProducto(String nombre, double precio, int stock, String descripcion, String nombreCat) throws SQLException {
+        String sql = "{CALL RegistrarProducto(?, ?, ?, ?, ?)}";
         try {
             con = cn.getConnection();
             ps = con.prepareCall(sql);
@@ -67,7 +66,7 @@ public class ProductoDAO {
             ps.setDouble(2, precio);
             ps.setInt(3, stock);
             ps.setString(4, descripcion);
-            //colocar para que elija la categoria
+            ps.setString(5, nombreCat);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,6 +80,34 @@ public class ProductoDAO {
             }
         }
     }
-    
-    
+
+    public List<CategoriaProducto> obtenerCategorias() throws SQLException {
+        List<CategoriaProducto> categorias = new ArrayList<>();
+        String sql = "{CALL ObtenerCategorias()}"; // Asegúrate de que el procedimiento no necesite parámetros.
+        try {
+            con = cn.getConnection();
+            cs = con.prepareCall(sql);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                CategoriaProducto cat = new CategoriaProducto();
+                cat.setNombreCat(rs.getString("nombreCat"));
+                categorias.add(cat);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Error al obtener las categorías", e);
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return categorias;
+    }
+
 }

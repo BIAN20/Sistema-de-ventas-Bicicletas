@@ -1,7 +1,8 @@
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.CategoriaProducto"%>
+<%@page import="java.util.List"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">        
@@ -24,26 +25,13 @@
             <a href="#">Nueva Venta</a>
         </div>
 
-
         <div class="container mt-5">
             <h2 class="text-center">Registro de Producto</h2>
-            <form>
-                <!-- Campo ID Producto -->
-                <div class="mb-3">
-                    <label for="idProducto" class="form-label">ID Producto</label>
-                    <input type="text" class="form-control" id="idProducto" name="idProducto" value="12345" readonly>
-                </div>
-
+            <form action="/SistemaDolmarBike/ProductoController?accion=nuevo" method="POST">
                 <!-- Campo Nombre Producto -->
                 <div class="mb-3">
                     <label for="nombreProducto" class="form-label">Nombre del Producto</label>
                     <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingrese el nombre del producto" required>
-                </div>
-
-                <!-- Campo Descripción -->
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese una descripción del producto" required></textarea>
                 </div>
 
                 <!-- Campo Precio -->
@@ -57,25 +45,41 @@
                     <label for="stock" class="form-label">Stock</label>
                     <input type="number" class="form-control" id="stock" name="stock" placeholder="Ingrese el stock disponible" required>
                 </div>
+                
+                <!-- Campo Descripción -->
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese una descripción del producto" required></textarea>
+                </div>
 
                 <!-- Select Categorías -->
                 <div class="mb-3">
                     <label for="categoria" class="form-label">Categoría</label>
                     <select class="form-select" id="categoria" name="categoria" required>
                         <option value="">Seleccione una categoría</option>
-                        <option value="1">Electrónica</option>
-                        <option value="2">Hogar</option>
-                        <option value="3">Ropa</option>
-                        <option value="4">Alimentos</option>
+                        <%
+                            List<CategoriaProducto> categorias = (List<CategoriaProducto>) request.getAttribute("categorias");
+                            if (categorias != null && !categorias.isEmpty()) {
+                                for (CategoriaProducto categoria : categorias) {
+                        %>
+                        <option value="<%= categoria.getNombreCat()%>"><%= categoria.getNombreCat()%></option>
+                        <%
+                            }
+                        } else {
+                        %>
+                        <option value="" disabled>No hay categorías disponibles</option>
+                        <%
+                            }
+                        %>
                     </select>
                 </div>
 
                 <!-- Botón de Enviar -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Registrar Producto</button>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <a href="ProductoController?accion=listar" class="btn btn-secondary">Cancelar</a>
                 </div>
             </form>
         </div>
-
     </body>
 </html>
