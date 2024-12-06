@@ -45,19 +45,18 @@
                     <table class="table table-bordered table-striped mt-3">
                         <thead>
                             <tr>
-                                <th>ID-Cliente</th>
+                                <th>ID</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
-                                <th>DNI</th>
-                                <th>Dirección</th>
-                                <th>Teléfono</th>
-                                <th>Email</th>
-                                <th>Tipo Cliente</th> <!-- Columna para el tipo de cliente -->
+                                <th>DNI</th>                                                                
+                                <th>Telefono</th>
+                                <th>E-mail</th>
+                                <th>Direccion</th>
+                                <th>Tipo Cliente</th> 
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Verifica si no hay clientes -->
                             <c:if test="${empty listaClientes}">
                                 <tr>
                                     <td colspan="9" class="text-center">No hay clientes registrados</td>
