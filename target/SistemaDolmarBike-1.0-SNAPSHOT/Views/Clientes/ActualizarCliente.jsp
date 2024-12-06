@@ -13,7 +13,7 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <h3>Dolmar Bikes</h3>
-            <a href="/SistemaDolmarBike/ClienteController?accion=nuevo">Agregar Cliente</a>
+            <a href="/SistemaDolmarBike/ClsienteController?accion=nuevo">Agregar Cliente</a>
             <a href="/SistemaDolmarBike/ClienteController?accion=listar">Listar Clientes</a>
             <a href="/SistemaDolmarBike/ProductoController?accion=nuevo">Nuevo Producto</a>
             <a href="/SistemaDolmarBike/ProductoController?accion=listar">Listar Productos</a>

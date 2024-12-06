@@ -12,22 +12,19 @@
         <script src="JS/App.js"></script>           
     </head>
     <body>
-        
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3>Dolmar Bikes</h3>
-            <a href="/SistemaDolmarBike/ClienteController?accion=nuevo">Agregar Cliente</a>
-            <a href="/SistemaDolmarBike/ClienteController?accion=listar">Listar Clientes</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=nuevo">Nuevo Producto</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=listar">Listar Productos</a>
-            <a href="/SistemaDolmarBike/CategoriaController?accion=nueva">Nueva Categoría</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
-            <a href="#">Nueva Venta</a>
-        </div>
 
-        
         <div class="container mt-3">
+            <div class="sidebar">
+                <h3>Dolmar Bikes</h3>
+                <a href="/SistemaDolmarBike/ClienteController?accion=nuevo">Agregar Cliente</a>
+                <a href="/SistemaDolmarBike/ClienteController?accion=listar">Listar Clientes</a>
+                <a href="/SistemaDolmarBike/ProductoController?accion=nuevo">Nuevo Producto</a>
+                <a href="/SistemaDolmarBike/ProductoController?accion=listar">Listar Productos</a>
+                <a href="/SistemaDolmarBike/CategoriaController?accion=nueva">Nueva Categoría</a>
+                <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
+                <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
+                <a href="#">Nueva Venta</a>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <h2>Lista de Clientes</h2>   
