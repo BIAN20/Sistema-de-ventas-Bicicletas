@@ -79,7 +79,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Nuevo Trabajador</h5>
                                 <p class="card-text">Registra trabajadores en el sistema.</p>
-                                <a href="#" class="btn btn-primary">Ir</a>
+                                <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo" class="btn btn-primary">Ir</a>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Listar Trabajadores</h5>
                                 <p class="card-text">Consulta los trabajadores registrados.</p>
-                                <a href="#" class="btn btn-primary">Ir</a>
+                                <a href="/SistemaDolmarBike/TrabajadorController?accion=listar" class="btn btn-primary">Ir</a>
                             </div>
                         </div>
                     </div>
