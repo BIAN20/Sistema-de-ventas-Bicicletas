@@ -83,7 +83,7 @@ public class ProductoDAO {
 
     public List<CategoriaProducto> obtenerCategorias() throws SQLException {
         List<CategoriaProducto> categorias = new ArrayList<>();
-        String sql = "{CALL ObtenerCategorias()}"; // Asegúrate de que el procedimiento no necesite parámetros.
+        String sql = "{CALL ObtenerCategorias()}"; 
         try {
             con = cn.getConnection();
             cs = con.prepareCall(sql);
@@ -108,6 +108,49 @@ public class ProductoDAO {
             }
         }
         return categorias;
+    }
+
+    public void eliminarProducto(int idProducto) throws SQLException {
+        String sql = "{CALL EliminarProducto(?)}";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareCall(sql);
+            ps.setInt(1, idProducto);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Error al eliminar el producto", e);
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public List<Producto> buscarProducto(String criterio) {
+        List<Producto> listaProductos = new ArrayList<>();
+        String sql = "{CALL BuscarProducto(?)}";
+        try (Connection con = cn.getConnection(); PreparedStatement ps = con.prepareCall(sql)) {
+            ps.setString(1, criterio);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Producto pro = new Producto();
+                pro.setIdProducto(rs.getInt("idProducto"));
+                pro.setNombreCat(rs.getString("nombreCat"));
+                pro.setNombreProducto(rs.getString("nombreProducto"));
+                pro.setPrecio(rs.getDouble("precio"));
+                pro.setStock(rs.getInt("stock"));
+                pro.setDescripcion(rs.getString("descripcion"));
+                listaProductos.add(pro);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
     }
 
 }

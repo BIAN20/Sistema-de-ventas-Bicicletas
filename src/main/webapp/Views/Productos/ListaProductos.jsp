@@ -43,8 +43,8 @@
                         </button>
                     </form>
 
-                    <!-- Tabla de clientes -->
-                    <table class="table table-bordered table-striped mt-3">
+                    <!-- Tabla de productos -->
+                    <table class="table table-bordered table-striped table-sm mt-3">
                         <thead>
                             <tr>
                                 <th>Codigo</th>
@@ -57,14 +57,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Verifica si no hay clientes -->
+                            <!-- Verifica si no hay productos -->
                             <c:if test="${empty producto}">
                                 <tr>
-                                    <td colspan="9" class="text-center">No hay Productos registrados</td>
+                                    <td colspan="7" class="text-center">No hay Productos registrados</td>
                                 </tr>
                             </c:if>
 
-                            <!-- Itera sobre los clientes -->
+                            <!-- Itera sobre los productos -->
                             <c:forEach var="pro" items="${producto}">
                                 <tr>
                                     <td>${pro.idProducto}</td>
@@ -74,12 +74,11 @@
                                     <td>${pro.stock}</td>
                                     <td>${pro.descripcion}</td>
                                     <td>
-                                        <!-- Botón para editar el cliente -->
+                                        <!-- Botón para editar el producto -->
                                         <a href="ProductoController?accion=actualizar&idProducto=${pro.idProducto}" class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
-
-                                        <!-- Formulario para eliminar cliente -->
+                                        
                                         <form id="formEliminar_${pro.idProducto}" action="ProductoController" method="post" style="display:inline;">
                                             <input type="hidden" name="accion" value="eliminar">
                                             <input type="hidden" name="id" value="${pro.idProducto}">

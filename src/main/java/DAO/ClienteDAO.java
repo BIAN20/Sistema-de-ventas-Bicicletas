@@ -165,11 +165,9 @@ public class ClienteDAO {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setDireccion(rs.getString("direccion"));
                 cliente.setTelefono(rs.getString("telefono"));
-
                 TipoCliente tipoCliente = new TipoCliente();
                 tipoCliente.setNombreTipo(rs.getString("nombreTipo"));
                 cliente.setTipoCliente(tipoCliente);
-
                 listaClientes.add(cliente);
             }
         } catch (SQLException e) {
