@@ -60,4 +60,33 @@ public class TrabajadorDAO {
         return listar;
     }
     
+    
+    public void registrarTrabajador(String nombre, String apellidos, String nroIdentificacion, String email, String direccion, String telefono, String cargo, double sueldo) throws SQLException {
+        String sql = "{CALL RegistrarCliente(?, ?, ?, ?, ?, ?, ?, ?)}";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareCall(sql);
+            ps.setString(1, nombre);
+            ps.setString(2, apellidos);
+            ps.setString(3, nroIdentificacion);
+            ps.setString(4, email);
+            ps.setString(5, direccion);
+            ps.setString(6, telefono);
+            ps.setString(7, cargo);
+            ps.setDouble(8, sueldo);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Error al registrar el trabajador", e);
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    
 }
