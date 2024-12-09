@@ -83,11 +83,10 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <!-- Formulario para eliminar cliente -->
-                                        <form id="formEliminar_${tra.idTrabajador}" action="TrabajadotController" method="post" style="display:inline;">
+                                        <form id="formEliminar_${tra.idTrabajador}" action="TrabajadorController" method="post" style="display:inline;">
                                             <input type="hidden" name="accion" value="eliminar">
-                                            <input type="hidden" name="id" value="${tra.idTrabajador}">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(${tra.idTrabajador})">
+                                            <input type="hidden" name="idTrabajador" value="${tra.idTrabajador}">
+                                            <button type="submit" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

@@ -125,16 +125,69 @@ public class TrabajadorController extends HttpServlet {
         }
     }
 
-    private void actualizar(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+    private void actualizar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        String idTrabajador = request.getParameter("idTrabajador");
+        if (idTrabajador != null && !idTrabajador.isEmpty()) {
+            if ("POST".equalsIgnoreCase(request.getMethod())) {
+                // Obtienes los valores del formulario para la actualización
+                String nombre = request.getParameter("nombre");
+                String apellidos = request.getParameter("apellidos");
+                String nroIdentificacion = request.getParameter("nroIdentificacion");
+                String email = request.getParameter("email");
+                String direccion = request.getParameter("direccion");
+                String telefono = request.getParameter("telefono");
+                String cargo = request.getParameter("cargo");
+                double sueldo = Double.parseDouble(request.getParameter("sueldo"));
 
-    private void buscar(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+                // Verificas que todos los campos estén presentes
+                if (nombre != null && apellidos != null && nroIdentificacion != null && email != null
+                        && direccion != null && telefono != null && cargo != null && sueldo > 0) {
+
+                    try {
+                        traDAO.actualizarTrabajador(
+                                Integer.parseInt(idTrabajador),
+                                nombre,
+                                apellidos,
+                                nroIdentificacion,
+                                email,
+                                direccion,
+                                telefono
+                        );
+
+                        // Rediriges a la lista de trabajadores después de la actualización
+                        response.sendRedirect("TrabajadorController?accion=listar");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al actualizar el cliente");
+                  
+                    }
+                    // Llamas al DAO para actualizar el trabajador
+
+                } else {
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Todos los campos son requeridos");
+                }
+            } else {
+                // Si es GET, obtienes los datos del trabajador y los pasas al formulario de edición
+                Trabajador trabajador = traDAO.obtenerTrabajadorPorId(Integer.parseInt(idTrabajador));
+                if (trabajador != null) {
+                    request.setAttribute("trabajador", trabajador);
+                    request.getRequestDispatcher(PAG_ACTUALIZAR).forward(request, response);
+                } else {
+                    response.sendRedirect("TrabajadorController?accion=listar");
+                }
+            }
+        } else {
+            response.sendRedirect("TrabajadorController?accion=listar");
+        }
     }
 
     private void eliminar(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private void buscar(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
