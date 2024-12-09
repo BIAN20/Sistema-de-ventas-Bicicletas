@@ -34,7 +34,6 @@
                         <i class="fa fa-plus-circle"> </i> Nuevo Producto
                     </a>
 
-                    <!-- Formulario de búsqueda -->
                     <form action="ProductoController?accion=buscar" method="get" class="d-flex align-items-center mt-3">
                         <input type="hidden" name="accion" value="buscar">
                         <input type="text" name="criterio" class="form-control me-2" placeholder="Buscar producto..." aria-label="Buscar Producto">
@@ -43,7 +42,6 @@
                         </button>
                     </form>
 
-                    <!-- Tabla de productos -->
                     <table class="table table-bordered table-striped table-sm mt-3">
                         <thead>
                             <tr>
@@ -57,7 +55,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Verifica si no hay productos -->
+                          
                             <c:if test="${empty producto}">
                                 <tr>
                                     <td colspan="7" class="text-center">No hay Productos registrados</td>
