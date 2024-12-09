@@ -17,7 +17,7 @@
             <a href="/SistemaDolmarBike/ClienteController?accion=listar">Listar Clientes</a>
             <a href="/SistemaDolmarBike/ProductoController?accion=nuevo">Nuevo Producto</a>
             <a href="/SistemaDolmarBike/ProductoController?accion=listar">Listar Productos</a>
-            <a href="/SistemaDolmarBike/CategoriaController?accion=nueva">Nueva Categoría</a>
+            <a href="/SistemaDolmarBike/CategoriaController?accion=nuevo">Nueva Categoría</a>
             <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
             <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
             <a href="#">Nueva Venta</a>
@@ -70,7 +70,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Nueva Categoría</h5>
                                 <p class="card-text">Crea categorías para los productos.</p>
-                                <a href="#" class="btn btn-primary">Ir</a>
+                                <a href="/SistemaDolmarBike/CategoriaController?accion=nuevo" class="btn btn-primary">Ir</a>
                             </div>
                         </div>
                     </div>
