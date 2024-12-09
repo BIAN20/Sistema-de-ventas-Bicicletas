@@ -152,7 +152,9 @@ public class TrabajadorController extends HttpServlet {
                                 nroIdentificacion,
                                 email,
                                 direccion,
-                                telefono
+                                telefono,
+                                cargo,
+                                sueldo
                         );
 
                         // Rediriges a la lista de trabajadores después de la actualización

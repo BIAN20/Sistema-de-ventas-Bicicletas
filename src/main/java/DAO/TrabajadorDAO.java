@@ -85,8 +85,8 @@ public class TrabajadorDAO {
         }
     }  
     
-    public void actualizarTrabajador(int idTrabajador, String nombre, String apellidos, String dni, String direccion, String telefono, String email) throws SQLException {
-        String sql = "{CALL ActualizarTrabajador(?, ?, ?, ?, ?, ?, ?)}";
+    public void actualizarTrabajador(int idTrabajador, String nombre, String apellidos, String dni, String direccion, String telefono, String email,String cargo, double sueldo) throws SQLException {
+        String sql = "{CALL ActualizarTrabajador(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         try {
             con = cn.getConnection();
             cs = con.prepareCall(sql);
@@ -97,6 +97,8 @@ public class TrabajadorDAO {
             cs.setString(5, direccion);
             cs.setString(6, telefono);
             cs.setString(7, email);
+            cs.setString(8, cargo);
+            cs.setDouble(9, sueldo);
             cs.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,16 +121,19 @@ public class TrabajadorDAO {
             con = cn.getConnection();
             cs = con.prepareCall(sql);
             cs.setInt(1, idTrabajador);
-            ResultSet rs = cs.executeQuery();
+            rs = cs.executeQuery();
             if (rs.next()) {
                 trabajador = new Trabajador();
                 trabajador.setIdTrabajador(rs.getInt("ID_Trabajador"));
                 trabajador.setNombre(rs.getString("Nombre"));
                 trabajador.setApellidos(rs.getString("Apellidos"));
-                trabajador.setNroIdentificacion(rs.getString("nIdentificacion"));
+                trabajador.setNroIdentificacion(rs.getString("DNI"));
                 trabajador.setDireccion(rs.getString("Direccion"));
                 trabajador.setTelefono(rs.getString("Telefono"));
                 trabajador.setEmail(rs.getString("Email"));
+                trabajador.setCargo(rs.getString("Cargo"));
+                trabajador.setSueldo(rs.getDouble("Sueldo"));
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();
