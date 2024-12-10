@@ -148,5 +148,80 @@ public class TrabajadorDAO {
         }
         return trabajador;
     }
+    
+    
+    public List<Trabajador> buscarTrabajador(String criterio) {
+        List<Trabajador> listaTrabajador = new ArrayList<>();
+        String sql = "{CALL BuscarTrabajador(?)}";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareCall(sql);
+            ps.setString(1, criterio);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Trabajador tra = new Trabajador();
+                tra.setIdTrabajador(rs.getInt("idTrabajador"));
+                tra.setNombre(rs.getString("Nombre"));
+                tra.setApellidos(rs.getString("Apellidos"));
+                tra.setNroIdentificacion(rs.getString("DNI"));
+                tra.setDireccion(rs.getString("Direccion"));
+                tra.setTelefono(rs.getString("Telefono"));
+                tra.setEmail(rs.getString("Email"));
+                tra.setCargo(rs.getString("Cargo"));
+                tra.setSueldo(rs.getDouble("Sueldo"));
+                listaTrabajador.add(tra);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return listaTrabajador;
+    }
+    
+    
+    public boolean eliminarTrabajador(int idTrabajador) throws SQLException {
+        Connection con = null;
+        CallableStatement stmt = null;
+        String sql = "{CALL EliminarTrabajador(?)}";  // Nombre del procedimiento almacenado
+
+        try {
+            con = cn.getConnection();
+            stmt = con.prepareCall(sql);
+            stmt.setInt(1, idTrabajador);
+
+            int result = stmt.executeUpdate();
+            System.out.println("Resultado de la eliminación: " + result);
+
+            return result > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar el procedimiento almacenado: " + e.getMessage());
+            e.printStackTrace();  // Imprimir la traza del error
+            return false;
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

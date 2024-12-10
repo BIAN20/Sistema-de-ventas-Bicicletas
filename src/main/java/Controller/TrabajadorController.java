@@ -184,12 +184,41 @@ public class TrabajadorController extends HttpServlet {
         }
     }
 
-    private void eliminar(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private void eliminar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            String idParam = request.getParameter("idTrabajador");
+            if (idParam == null || idParam.isEmpty()) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID de trabajador no proporcionado");
+                return;
+            }
+            int idTrabajador = Integer.parseInt(idParam);
+            System.out.println("Intentando eliminar el cliente con ID: " + idTrabajador);
+            
+             boolean eliminado = traDAO.eliminarTrabajador(idTrabajador);
+
+            if (eliminado) {
+                System.out.println("Trabjador eliminado con éxito.");
+                response.sendRedirect("TabajadorController?accion=listar");
+            } else {
+                System.out.println("Error al eliminar el trabajador.");
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error eliminando el trabajador");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Error procesando la solicitud");
+        }
     }
 
-    private void buscar(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String criterio = request.getParameter("criterio");
+        if (criterio != null && !criterio.isEmpty()) {
+            List<Trabajador> trabajador = traDAO.buscarTrabajador(criterio);
+            request.setAttribute("listaTrabajador", trabajador);
+            request.setAttribute("criterio", criterio);
+            request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
+        } else {
+            response.sendRedirect("TrabajadorController?accion=listar");
+        }
     }
 
 }
