@@ -20,6 +20,7 @@
             <a href="/SistemaDolmarBike/CategoriaController?accion=nuevo">Nueva Categoría</a>
             <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
             <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
+            <a href="/SistemaDolmarBike/CategoriaController?accion=listar">Listar Categorias</a>
             <a href="#">Nueva Venta</a>
         </div>
 
@@ -89,6 +90,15 @@
                                 <h5 class="card-title">Listar Trabajadores</h5>
                                 <p class="card-text">Consulta los trabajadores registrados.</p>
                                 <a href="/SistemaDolmarBike/TrabajadorController?accion=listar" class="btn btn-primary">Ir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Listar Categorias</h5>
+                                <p class="card-text">Consulta las categorias registradas.</p>
+                                <a href="/SistemaDolmarBike/CategoriaController?accion=listar" class="btn btn-primary">Ir</a>
                             </div>
                         </div>
                     </div>
