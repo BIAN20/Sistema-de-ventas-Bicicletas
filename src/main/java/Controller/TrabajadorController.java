@@ -162,7 +162,7 @@ public class TrabajadorController extends HttpServlet {
                     } catch (Exception e) {
                         e.printStackTrace();
                         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al actualizar el cliente");
-                  
+
                     }
                     // Llamas al DAO para actualizar el trabajador
 
@@ -184,38 +184,28 @@ public class TrabajadorController extends HttpServlet {
         }
     }
 
-    private void eliminar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            String idParam = request.getParameter("idTrabajador");
-            if (idParam == null || idParam.isEmpty()) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID de trabajador no proporcionado");
-                return;
-            }
-            int idTrabajador = Integer.parseInt(idParam);
-            System.out.println("Intentando eliminar el cliente con ID: " + idTrabajador);
-            
-             boolean eliminado = traDAO.eliminarTrabajador(idTrabajador);
-
-            if (eliminado) {
-                System.out.println("Trabjador eliminado con éxito.");
-                response.sendRedirect("TabajadorController?accion=listar");
-            } else {
-                System.out.println("Error al eliminar el trabajador.");
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error eliminando el trabajador");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Error procesando la solicitud");
+    protected void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String criterio = request.getParameter("criterio");
+        if (criterio != null && !criterio.trim().isEmpty()) {
+            List<Trabajador> listaTrabajador = traDAO.buscarTrabajador(criterio);
+            request.setAttribute("listaTrabajador", listaTrabajador);
+            request.setAttribute("criterio", criterio);
+            request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
+        } else {
+            response.sendRedirect("TrabajadorController?accion=listar");
         }
     }
 
-    private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String criterio = request.getParameter("criterio");
-        if (criterio != null && !criterio.isEmpty()) {
-            List<Trabajador> trabajador = traDAO.buscarTrabajador(criterio);
-            request.setAttribute("listaTrabajador", trabajador);
-            request.setAttribute("criterio", criterio);
-            request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
+    private void eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idTrabajador = request.getParameter("idTrabajador");
+        if (idTrabajador != null && !idTrabajador.isEmpty()) {
+            try {
+                traDAO.eliminarTrabajador(Integer.parseInt(idTrabajador));
+                response.sendRedirect("TrabajadorController?accion=listar");
+            } catch (SQLException ex) {
+                Logger.getLogger(TrabajadorController.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el trabajador GLU: " + ex.getMessage());
+            }
         } else {
             response.sendRedirect("TrabajadorController?accion=listar");
         }

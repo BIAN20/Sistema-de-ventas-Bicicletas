@@ -83,9 +83,9 @@ public class TrabajadorDAO {
                 con.close();
             }
         }
-    }  
-    
-    public void actualizarTrabajador(int idTrabajador, String nombre, String apellidos, String dni, String direccion, String telefono, String email,String cargo, double sueldo) throws SQLException {
+    }
+
+    public void actualizarTrabajador(int idTrabajador, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String cargo, double sueldo) throws SQLException {
         String sql = "{CALL ActualizarTrabajador(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         try {
             con = cn.getConnection();
@@ -113,7 +113,6 @@ public class TrabajadorDAO {
         }
     }
 
-    // Método para obtener el trabajador por ID
     public Trabajador obtenerTrabajadorPorId(int idTrabajador) throws SQLException {
         Trabajador trabajador = null;
         String sql = "{CALL ObtenerTrabajadorPorId(?)}";
@@ -133,7 +132,7 @@ public class TrabajadorDAO {
                 trabajador.setEmail(rs.getString("Email"));
                 trabajador.setCargo(rs.getString("Cargo"));
                 trabajador.setSueldo(rs.getDouble("Sueldo"));
-                
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -148,8 +147,7 @@ public class TrabajadorDAO {
         }
         return trabajador;
     }
-    
-    
+
     public List<Trabajador> buscarTrabajador(String criterio) {
         List<Trabajador> listaTrabajador = new ArrayList<>();
         String sql = "{CALL BuscarTrabajador(?)}";
@@ -161,14 +159,14 @@ public class TrabajadorDAO {
             while (rs.next()) {
                 Trabajador tra = new Trabajador();
                 tra.setIdTrabajador(rs.getInt("idTrabajador"));
-                tra.setNombre(rs.getString("Nombre"));
-                tra.setApellidos(rs.getString("Apellidos"));
-                tra.setNroIdentificacion(rs.getString("DNI"));
-                tra.setDireccion(rs.getString("Direccion"));
-                tra.setTelefono(rs.getString("Telefono"));
-                tra.setEmail(rs.getString("Email"));
-                tra.setCargo(rs.getString("Cargo"));
-                tra.setSueldo(rs.getDouble("Sueldo"));
+                tra.setNombre(rs.getString("nombre"));
+                tra.setApellidos(rs.getString("apellidos"));
+                tra.setNroIdentificacion(rs.getString("nroIdentificacion"));
+                tra.setDireccion(rs.getString("direccion"));
+                tra.setTelefono(rs.getString("telefono"));
+                tra.setEmail(rs.getString("email"));
+                tra.setCargo(rs.getString("cargo"));
+                tra.setSueldo(rs.getDouble("sueldo"));
                 listaTrabajador.add(tra);
             }
         } catch (SQLException e) {
@@ -190,36 +188,24 @@ public class TrabajadorDAO {
         }
         return listaTrabajador;
     }
-    
-    
-    public boolean eliminarTrabajador(int idTrabajador) throws SQLException {
-        Connection con = null;
-        CallableStatement stmt = null;
-        String sql = "{CALL EliminarTrabajador(?)}";  // Nombre del procedimiento almacenado
 
+    public void eliminarTrabajador(int idTrabajador) throws SQLException {
+        String sql = "{CALL EliminarTrabajador(?)}";
         try {
             con = cn.getConnection();
-            stmt = con.prepareCall(sql);
-            stmt.setInt(1, idTrabajador);
-
-            int result = stmt.executeUpdate();
-            System.out.println("Resultado de la eliminación: " + result);
-
-            return result > 0;
+            cs = con.prepareCall(sql);
+            cs.setInt(1, idTrabajador);
+            cs.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Error al ejecutar el procedimiento almacenado: " + e.getMessage());
-            e.printStackTrace();  // Imprimir la traza del error
-            return false;
+            e.printStackTrace();
+            throw new SQLException("Error al eliminar el trabajador", e);
         } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            // Cerramos los recursos
+            if (cs != null) {
+                cs.close();
+            }
+            if (con != null) {
+                con.close();
             }
         }
     }

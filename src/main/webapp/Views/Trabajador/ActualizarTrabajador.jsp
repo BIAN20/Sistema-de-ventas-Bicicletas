@@ -1,29 +1,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Actualizar Trabajador</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="CSS/estilos.css"/>
-    </head>
-    <body>
-        
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3>Dolmar Bikes</h3>
-            <a href="/SistemaDolmarBike/ClienteController?accion=nuevo">Agregar Cliente</a>
-            <a href="/SistemaDolmarBike/ClienteController?accion=listar">Listar Clientes</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=nuevo">Nuevo Producto</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=listar">Listar Productos</a>
-            <a href="/SistemaDolmarBike/CategoriaController?accion=nueva">Nueva Categoría</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
-            <a href="#">Nueva Venta</a>
-        </div>
-        
-        <div class="container mt-5">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Trabajador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="CSS/estilos.css"/>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>Dolmar Bikes</h3>
+        <a href="/SistemaDolmarBike/ClienteController?accion=nuevo"><i class="fa fa-user-plus"></i> Agregar Cliente</a>
+        <a href="/SistemaDolmarBike/ClienteController?accion=listar"><i class="fa fa-users"></i> Listar Clientes</a>
+        <a href="/SistemaDolmarBike/ProductoController?accion=nuevo"><i class="fa fa-box"></i> Nuevo Producto</a>
+        <a href="/SistemaDolmarBike/ProductoController?accion=listar"><i class="fa fa-list"></i> Listar Productos</a>
+        <a href="/SistemaDolmarBike/CategoriaController?accion=nueva"><i class="fa fa-tags"></i> Nueva Categoría</a>
+        <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo"><i class="fa fa-user-tie"></i> Nuevo Trabajador</a>
+        <a href="/SistemaDolmarBike/TrabajadorController?accion=listar"><i class="fa fa-users-cog"></i> Listar Trabajadores</a>
+        <a href="#"><i class="fa fa-shopping-cart"></i> Nueva Venta</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="card">
             <h2>Actualizar Trabajador</h2>
             <form action="TrabajadorController?accion=actualizar" method="POST">
                 <input type="hidden" name="idTrabajador" value="${trabajador.idTrabajador}" />
@@ -68,11 +70,14 @@
                     <input type="number" step="0.01" class="form-control" name="sueldo" value="${trabajador.sueldo}" required />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Actualizar</button>
-                <a href="TrabajadorController?accion=listar" class="btn btn-secondary mt-2">Cancelar</a>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary me-2">Actualizar</button>
+                    <a href="TrabajadorController?accion=listar" class="btn btn-secondary">Cancelar</a>
+                </div>
             </form>
         </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

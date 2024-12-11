@@ -24,7 +24,7 @@ public class ProductoController extends HttpServlet {
     private static final String PAG_ACTUALIZAR = "/Views/Productos/ActualizarProducto.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
         switch (accion) {
@@ -53,13 +53,21 @@ public class ProductoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -108,8 +116,53 @@ public class ProductoController extends HttpServlet {
         }
     }
 
-    private void actualizar(HttpServletRequest request, HttpServletResponse response) {
+    private void actualizar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String idProducto = request.getParameter("idProducto");
+        if (idProducto != null && !idProducto.isEmpty()) {
+            if ("POST".equalsIgnoreCase(request.getMethod())) {
+                String nombreProducto = request.getParameter("nombre");
+                String precio = request.getParameter("precio");
+                String stock = request.getParameter("stock");
+                String descripcion = request.getParameter("descripcion");
+                String nombreCat = request.getParameter("categoria");
 
+                if (nombreProducto != null && precio != null && stock != null && descripcion != null && nombreCat != null) {
+                    try {
+                        proDAO.actualizarProducto(Integer.parseInt(idProducto),
+                                nombreProducto,
+                                Double.parseDouble(precio),
+                                Integer.parseInt(stock),
+                                descripcion,
+                                nombreCat
+                        );
+                        response.sendRedirect("ProductoController?accion=listar");
+                    } catch (SQLException e) {
+                        Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, "Error al actualizar el producto", e);
+                        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al actualizar el producto.");
+                    }
+                } else {
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Todos los campos son requeridos.");
+                }
+            } else { // Si es GET, cargar el formulario con datos
+                try {
+                    Producto producto = proDAO.obtenerProductoPorId(Integer.parseInt(idProducto));
+                    List<CategoriaProducto> categorias = proDAO.obtenerCategorias(); // Obtener las categorías
+                    if (producto != null) {
+                        request.setAttribute("producto", producto);
+                        request.setAttribute("categorias", categorias); // Agregar las categorías al request
+                        request.getRequestDispatcher(PAG_ACTUALIZAR).forward(request, response);
+                    } else {
+                        response.sendRedirect("ProductoController?accion=listar");
+                    }
+                } catch (SQLException e) {
+                    Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, "Error al cargar los datos para actualizar", e);
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al cargar los datos para actualizar.");
+                }
+            }
+        } else {
+            response.sendRedirect("ProductoController?accion=listar");
+        }
     }
 
     private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -117,21 +170,26 @@ public class ProductoController extends HttpServlet {
         if (criterio == null || criterio.trim().isEmpty()) {
             request.setAttribute("mensaje", "Por favor ingrese un criterio de búsqueda válido.");
             request.getRequestDispatcher("ProductoController?accion=listar").forward(request, response);
-        } else {
-            List<Producto> productos = proDAO.buscarProducto(criterio);
-            request.setAttribute("productos", productos);
-            request.getRequestDispatcher("ProductoController?accion=listar").forward(request, response);
+            return;
         }
-    }
+        List<Producto> productos = proDAO.BuscarProducto(criterio);
 
+        if (productos.isEmpty()) {
+            request.setAttribute("mensaje", "No se encontraron productos que coincidan con el criterio de búsqueda.");
+        }
+        request.setAttribute("producto", productos);
+        request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
+    }
 
     private void eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idProducto = Integer.parseInt(request.getParameter("id"));
             proDAO.eliminarProducto(idProducto);  // Llamamos a la capa de DAO para eliminar el producto
             response.sendRedirect("/SistemaDolmarBike/ProductoController?accion=listar");
+
         } catch (NumberFormatException | SQLException ex) {
-            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, "Error al eliminar el producto", ex);
+            Logger.getLogger(ProductoController.class
+                    .getName()).log(Level.SEVERE, "Error al eliminar el producto", ex);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el producto.");
         }
     }
