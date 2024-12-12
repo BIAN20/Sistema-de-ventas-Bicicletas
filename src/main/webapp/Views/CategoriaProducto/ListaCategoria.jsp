@@ -23,7 +23,7 @@
                 <a href="/SistemaDolmarBike/CategoriaController?accion=nuevo">Nueva Categoría</a>
                 <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
                 <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
-                <a href="/SistemaDolmarBike/CategoriaController?accion=listar">Listar Categorias</a>
+                <a href="/SistemaDolmarBike/CategoriaController?accion=listar">Listar Categorías</a>
                 <a href="#">Nueva Venta</a>
             </div>
             <div class="card">
@@ -32,15 +32,15 @@
                     <a href="CategoriaController?accion=nuevo" class="btn btn-success btn-sm">
                         <i class="fa fa-plus-circle"> </i> Nueva Categoría
                     </a>
-
                     <!-- Formulario de búsqueda -->
-                    <form action="CategoriaController?accion=buscar" method="get" class="d-flex align-items-center mt-3">
-                        <input type="hidden" name="accion" value="buscar">
-                        <input type="text" name="criterio" class="form-control me-2" placeholder="Buscar categoría..." aria-label="Buscar categoría">
+                    <form action="CategoriaController" method="GET" class="d-flex align-items-center mt-3">
+                        <input type="text" name="criterio" class="form-control me-2" placeholder="Buscar categoría..." aria-label="Buscar categoría" value="${criterio}">
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-search"></i> Buscar
                         </button>
+                        <input type="hidden" name="accion" value="buscar" />
                     </form>
+
 
                     <!-- Tabla de categorías -->
                     <table class="table table-bordered table-striped mt-3">
