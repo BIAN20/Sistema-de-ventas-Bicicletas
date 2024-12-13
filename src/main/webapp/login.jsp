@@ -40,7 +40,7 @@
                     <input type="text" name="usuario"  id="usuario" placeholder="Usuario" required />
                     <input type="password" name="contraseña"  id="contraseña" placeholder="Contraseña" required />
                     <a href="#">¿olvidate tu contraseña?</a>
-                    <button>Registrate</button>
+                    <button>Iniciar Sesión</button>
                 </form>
             </div>
             <div class="overlay-container">
