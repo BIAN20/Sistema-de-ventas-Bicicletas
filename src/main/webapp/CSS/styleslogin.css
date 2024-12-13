@@ -1,287 +1,251 @@
-/* Estilos base */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+	box-sizing: border-box;
 }
 
 body {
-    background-color: #ffffff; /* Fondo blanco para toda la página */
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
 }
 
-/* Estilo del contenedor del login */
-.login-container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    background-color: #ffffff; /* Fondo blanco para el contenedor de login */
-    position: relative; /* Necesario para posicionar la línea */
+h1 {
+	font-weight: bold;
+	margin: 0;
 }
 
-.left-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #ffffff; /* Fondo blanco para la sección izquierda */
+h2 {
+	text-align: center;
 }
 
-.left-section .logo {
-    width: 500px; /* Aumentar el tamaño de la imagen */
-    margin-bottom: 20px;
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
 }
 
-.right-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; /* Alineamos el contenido al centro */
-    padding: 50px;
-    background-color: #ffffff; /* Fondo blanco para la sección de login */
+span {
+	font-size: 12px;
 }
 
-.right-section h2 {
-    font-size: 2.5rem; /* Cambiamos el tamaño de "LOGIN" */
-    color: #0066b2;
-    margin-bottom: 30px; /* Ajustamos el margen */
-    text-align: center; /* Centrar el texto */
-    font-weight: bold; /* Cambiamos a negrita */
-    text-transform: uppercase; /* Cambiamos a mayúsculas */
+a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
 }
 
-.input-container {
-    margin-bottom: 15px; /* Reducimos el margen entre campos */
+button {
+	border-radius: 20px;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
 }
 
-.input-container input {
-    width: 300px; /* Establecemos un ancho fijo más pequeño */
-    padding: 10px;
-    font-size: 1rem; /* Ajustamos el tamaño del texto */
-    border: none;
-    border-bottom: 2px solid #E0E0E0;
-    outline: none;
-    color: #666666;
-    transition: border-bottom-color 0.3s;
+button:active {
+	transform: scale(0.95);
 }
 
-.input-container input:focus {
-    border-bottom-color: #0066b2; /* Cambia el color al enfocar el campo */
+button:focus {
+	outline: none;
 }
 
-.options {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
-    color: #999999;
-    margin-bottom: 20px;
+button.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
 }
 
-.options a {
-    color: #009688;
-    text-decoration: none;
-    transition: color 0.3s;
+form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
 }
 
-.options a:hover {
-    color: #0066b2;
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
 }
 
-.button-container {
-    display: flex;
-    justify-content: flex-end; /* Botón alineado a la derecha */
-}
-
-.login-btn {
-    width: 120px; /* Hacemos el botón un poco más pequeño */
-    padding: 8px; /* Ajustamos el padding */
-    font-size: 1rem;
-    color: white;
-    background-color: #333333;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.login-btn:hover {
-    background-color: #555555; /* Cambia el color al pasar el ratón */
-}
-
-/* Estilo para la línea divisoria */
-.line {
-    width: 2px; /* Ancho de la línea */
-    background-color: #0066b2; /* Color de la línea, igual al color del login */
-    height: 93%; /* Altura completa */
-    position: absolute; /* Posicionamiento absoluto */
-    left: 50%; /* Centrar horizontalmente */
-    top: 30px; /* Ajusta este valor para bajar la línea */
-    transform: translateX(-50%); /* Ajustar para centrar la línea */
-}
-
-/* Contenedor general */
 .container {
-    display: flex;
-    height: 100vh;
-    background-color: #2e74bd; /* Fondo azul para la página de bienvenida */
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
 }
 
-/* Contenido principal */
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #2e74bd; /* Fondo azul para el contenido principal */
-    position: relative;
-    transition: all 0.3s ease-in-out;
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
 }
 
-/* Barra superior */
-.header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    color: white;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10; /* Asegura que el encabezado esté siempre encima */
+.sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
 }
 
-/* Estilo para el contenedor de información del usuario */
-#user-info {
-    display: none; /* Oculto inicialmente */
-    flex-direction: column; /* Disposición vertical */
-    align-items: flex-end; /* Alinear a la derecha */
+.container.right-panel-active .sign-in-container {
+	transform: translateX(100%);
 }
 
-.user-info #user-name {
-    margin-right: 10px;
-    font-weight: bold;
+.sign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
 }
 
-/* Icono de usuario */
-.user-icon {
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: #2e74bd;
-    margin-left: 10px;
+.container.right-panel-active .sign-up-container {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
 }
 
-.logout {
-    margin-left: 10px;
-    color: #ff4d4d;
-    text-decoration: none;
+@keyframes show {
+	0%, 49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+	
+	50%, 100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+
+.overlay-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.container.right-panel-active .overlay-container{
+	transform: translateX(-100%);
+}
+
+.overlay {
+	background: #FF416C;
+	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+  	transform: translateX(50%);
+}
+
+.overlay-panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+	transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+	transform: translateX(0);
+}
+
+.overlay-right {
+	right: 0;
+	transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+	transform: translateX(20%);
+}
+
+.social-container {
+	margin: 20px 0;
+}
+
+.social-container a {
+	border: 1px solid #DDDDDD;
+	border-radius: 50%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 5px;
+	height: 40px;
+	width: 40px;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
     font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
 }
 
-/* Imagen principal */
-.main-image {
-    text-align: center; /* Centra la imagen en el contenedor */
+footer p {
+    margin: 10px 0;
 }
 
-/* Imagen principal */
-.main-image img {
-    width: 100%; /* Hacer que la imagen ocupe todo el ancho disponible */
-    max-height: 100%; /* Ajustar la altura máxima para no ocupar todo el espacio vertical */
-    object-fit: cover; /* Asegurar que la imagen cubra el área sin distorsionarse */
-    display: block;
-    margin: 30px auto;
-    transition: width 0.3s ease-in-out;
+footer i {
+    color: red;
 }
 
-/* Estilo para la barra rectangular */
-.bar-rectangular {
-    width: 100%; /* Ancho completo */
-    height: 50px; /* Altura de la barra */
-    background-color: #2e74bd; /* Color gris */
-    display: flex; /* Usar flexbox para alinear los elementos */
-    align-items: center; /* Centrar verticalmente */
-    padding: 10px 20px; /* Espaciado horizontal */
-    margin-top: 10px; /* Espaciado vertical reducido para que esté más arriba */
-}
-
-/* Estilo para la información dentro de la barra */
-.user-info-inside {
-    display: flex; /* Usar flexbox para alinear los elementos */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: flex-end; /* Alinear a la derecha */
-    width: 100%; /* Ancho completo */
-}
-
-/* Estilo para el nombre completo */
-.full-name {
-    margin-right: -10px; /* Espacio entre el nombre y el ícono */
-}
-
-/* Estilo para el icono del usuario */
-.user-icon {
-    font-size: 24px; /* Tamaño de la letra para la inicial */
-    font-weight: bold; /* Hacer la inicial en negrita */
-}
-
-/* Estilo para el botón de cerrar sesión */
-.logout {
-    margin-top: 3px; /* Margen superior para separación del nombre */
-    text-decoration: none; /* Quitar subrayado */
-    color: red; /* Color rojo para el hipervínculo */
-    display: block; /* Mostrar como bloque para que esté en una nueva línea */
-    margin-left: auto; /* Empujar el botón hacia la derecha */
-    font-size: 16px; /* Tamaño de fuente más grande */
-    font-weight: bold; /* Texto en negrita */
-}
-
-/* Estilo para la imagen del logo */
-.logo-image {
-    height: 70px; /* Ajusta la altura según sea necesario */
-    width: auto; /* Mantiene la relación de aspecto */
-}
-/* Estilo para el nombre del usuario */
-#user-name {
-    margin-right: 16px; /* Espacio a la derecha */
-    font-weight: bold; /* Texto en negrita */
-    color: white; /* Color del texto en blanco */
-    font-size: 18px; /* Tamaño de fuente */
-}
-
-#menu {
-    display: none; /* Inicialmente oculto */
-    background-color: #e7ebee; /* Color de fondo del menú */
-    border-radius: 5px; /* Bordes redondeados */
-}
-
-#menu h2 {
-    text-align: center; /* Centrar el texto */
-    font-weight: bold; /* Texto en negrita */
-    margin: 20px 0; /* Espaciado superior e inferior */
-}
-
-.menu-icon {
-    color: white; /* Cambiar a color blanco */
-    font-size: 24px; /* Ajustar el tamaño */
-    margin-left: 20px; /* Espaciado entre logo y menú */
-}
-
-#menu ul {
-    list-style-type: none; /* Sin viñetas */
-    padding: 0; /* Sin padding */
-    margin: 0; /* Sin margen */
-}
-
-#menu li {
-    padding: 8px 12px; /* Espaciado interno */
-    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
-}
-
-#menu li:hover {
-    background-color: #d0d7d9; /* Color de fondo al pasar el mouse */
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
 }
