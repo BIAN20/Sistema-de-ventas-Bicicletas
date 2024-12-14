@@ -1,8 +1,7 @@
-
 package Model;
 
-
 public class Persona {
+
     private int idPersona;
     private String nombre;
     private String apellidos;
@@ -10,11 +9,12 @@ public class Persona {
     private String direccion;
     private String telefono;
     private String email;
+    private estadoPersona estado;
 
     public Persona() {
     }
 
-    public Persona(int idPersona, String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email) {
+    public Persona(int idPersona, String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email, estadoPersona estado) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -22,6 +22,7 @@ public class Persona {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+        this.estado = estado;
     }
 
     public int getIdPersona() {
@@ -78,6 +79,14 @@ public class Persona {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public estadoPersona getEstado() {
+        return estado;
+    }
+
+    public void setEstado(estadoPersona estado) {
+        this.estado = estado;
     }
 
 }
