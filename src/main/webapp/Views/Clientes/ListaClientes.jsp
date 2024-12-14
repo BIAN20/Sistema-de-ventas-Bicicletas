@@ -52,14 +52,15 @@
                                 <th>Telefono</th>
                                 <th>E-mail</th>
                                 <th>Direccion</th>
-                                <th>Tipo Cliente</th> 
+                                <th>Tipo Cliente</th>
+                                <th>Estado</th> 
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:if test="${empty listaClientes}">
                                 <tr>
-                                    <td colspan="9" class="text-center">No hay clientes registrados</td>
+                                    <td colspan="10" class="text-center">No hay clientes registrados</td>
                                 </tr>
                             </c:if>
 
@@ -73,7 +74,8 @@
                                     <td>${cli.direccion}</td>
                                     <td>${cli.telefono}</td>
                                     <td>${cli.email}</td>
-                                    <td>${cli.tipoCliente.nombreTipo}</td> <!-- Muestra el tipo de cliente -->
+                                    <td>${cli.tipoCliente.nombreTipo}</td>
+                                    <td>${cli.estado}</td>
                                     <td>
                                         <!-- Botón para editar el cliente -->
                                         <a href="ClienteController?accion=actualizar&idCliente=${cli.idCliente}" class="btn btn-warning btn-sm">

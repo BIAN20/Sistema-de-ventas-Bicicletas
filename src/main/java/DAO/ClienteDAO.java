@@ -2,6 +2,7 @@ package DAO;
 
 import Model.Cliente;
 import Model.TipoCliente;
+import Model.estadoPersona;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,6 +40,11 @@ public class ClienteDAO {
                 tipoCliente.setNombreTipo(rs.getString(8));
                 cli.setTipoCliente(tipoCliente);
 
+                // Configurar Estado (mapeo a enum)
+                String estadoStr = rs.getString(9); // estado en String desde la BD
+                estadoPersona estado = estadoPersona.valueOf(estadoStr.toUpperCase()); // Mapeo a enum
+                cli.setEstado(estado);
+
                 listar.add(cli);
             }
         } catch (SQLException e) {
@@ -61,7 +67,6 @@ public class ClienteDAO {
         }
         return listar;
     }
- 
 
     public void registrarCliente(String nombre, String apellidos, String nroIdentificacion, String email, String direccion, String telefono, String tipoCliente, String ruc) throws SQLException {
         String sql = "{CALL RegistrarCliente(?, ?, ?, ?, ?, ?, ?, ?)}";
@@ -189,8 +194,7 @@ public class ClienteDAO {
         }
         return listaClientes;
     }
-    
-    
+
     public boolean eliminarCliente(int idCliente) throws SQLException {
         Connection con = null;
         CallableStatement stmt = null;
