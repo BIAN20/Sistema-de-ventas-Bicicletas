@@ -79,7 +79,7 @@ public class TrabajadorController extends HttpServlet {
         request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
 
     }
-
+    
     private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         try {
             String nombre = request.getParameter("nombre");
