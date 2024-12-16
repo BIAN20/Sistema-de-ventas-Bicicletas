@@ -54,6 +54,7 @@
                                 <th>Email</th>
                                 <th>Cargo</th> <!-- Columna para el tipo de cliente -->
                                 <th>Sueldo</th> 
+                                <th>Estado</th> 
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -77,6 +78,8 @@
                                     <td>${tra.email}</td>
                                     <td>${tra.cargo}</td>
                                     <td>${tra.sueldo}</td>
+                                    <td>${tra.estado}</td>
+
                                     <td>
                                         <!-- Botón para editar el cliente -->
                                         <a href="TrabajadorController?accion=actualizar&idTrabajador=${tra.idTrabajador}" class="btn btn-warning btn-sm">

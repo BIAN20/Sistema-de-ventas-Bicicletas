@@ -5,6 +5,7 @@ public class Trabajador extends Persona {
     private int idTrabajador;
     private double sueldo;
     private String cargo;
+    private String estado;
 
     public Trabajador() {
     }
@@ -20,6 +21,7 @@ public class Trabajador extends Persona {
         this.idTrabajador = idTrabajador;
         this.sueldo = sueldo;
         this.cargo = cargo;
+        this.estado = estado;
     }
 
     public int getIdTrabajador() {
@@ -44,6 +46,14 @@ public class Trabajador extends Persona {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

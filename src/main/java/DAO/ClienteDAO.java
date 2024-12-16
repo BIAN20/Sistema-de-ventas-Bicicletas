@@ -43,7 +43,7 @@ public class ClienteDAO {
                 // Configurar Estado (mapeo a enum)
                 String estadoStr = rs.getString(9); // estado en String desde la BD
                 estadoPersona estado = estadoPersona.valueOf(estadoStr.toUpperCase()); // Mapeo a enum
-                cli.setEstado(estado);
+                //cli.setEstado(estado);
 
                 listar.add(cli);
             }

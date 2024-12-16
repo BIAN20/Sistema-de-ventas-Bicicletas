@@ -35,6 +35,7 @@ public class TrabajadorDAO {
                 tra.setTelefono(rs.getString(7));
                 tra.setCargo(rs.getString(8));
                 tra.setSueldo(rs.getDouble(9));
+                tra.setEstado(rs.getString(10));
                 listar.add(tra);
             }
         } catch (SQLException e) {
@@ -85,8 +86,8 @@ public class TrabajadorDAO {
         }
     }
 
-    public void actualizarTrabajador(int idTrabajador, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String cargo, double sueldo) throws SQLException {
-        String sql = "{CALL ActualizarTrabajador(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+    public void actualizarTrabajador(int idTrabajador, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String cargo, double sueldo, String estado) throws SQLException {
+        String sql = "{CALL ActualizarTrabajador(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         try {
             con = cn.getConnection();
             cs = con.prepareCall(sql);
@@ -99,6 +100,7 @@ public class TrabajadorDAO {
             cs.setString(7, email);
             cs.setString(8, cargo);
             cs.setDouble(9, sueldo);
+            cs.setString(10, estado);
             cs.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,7 +134,7 @@ public class TrabajadorDAO {
                 trabajador.setEmail(rs.getString("Email"));
                 trabajador.setCargo(rs.getString("Cargo"));
                 trabajador.setSueldo(rs.getDouble("Sueldo"));
-
+                trabajador.setEstado(rs.getString("Estado"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

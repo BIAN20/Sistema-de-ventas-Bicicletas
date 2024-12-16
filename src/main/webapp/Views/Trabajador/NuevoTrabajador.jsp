@@ -54,8 +54,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="cargo" class="form-label">Cargo</label>
-                        <input type="text" class="form-control" id="cargo" name="cargo" required>
+                        <select class="form-control" id="cargo" name="cargo" required>
+                            <option value="" disabled selected>Seleccione un cargo</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Cajero">Cajero</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="sueldo" class="form-label">Sueldo</label>
                         <input type="number" class="form-control" id="sueldo" name="sueldo" step="0.01" min="0" required>

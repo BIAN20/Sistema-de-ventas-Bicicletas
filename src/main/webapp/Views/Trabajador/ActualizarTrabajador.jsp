@@ -61,14 +61,28 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="cargo" class="form-label">Cargo:</label>
-                    <input type="text" class="form-control" name="cargo" value="${trabajador.cargo}" required />
-                </div>
+                        <label for="cargo" class="form-label">Cargo</label>
+                        <select class="form-control" id="cargo" name="cargo" required>
+                            <option value="" disabled selected>Seleccione un cargo</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Cajero">Cajero</option>
+                        </select>
+                    </div>
 
                 <div class="mb-3">
                     <label for="sueldo" class="form-label">Sueldo:</label>
                     <input type="number" step="0.01" class="form-control" name="sueldo" value="${trabajador.sueldo}" required />
                 </div>
+                
+                <div class="mb-3">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select class="form-control" id="estado" name="estado" required>
+                            <option value="" disabled selected>Seleccione un cargo</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                            <option value="Suspendido">Suspendido</option>
+                        </select>
+                    </div>
 
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary me-2">Actualizar</button>

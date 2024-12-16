@@ -77,7 +77,6 @@ public class TrabajadorController extends HttpServlet {
         List<Trabajador> trabajador = traDAO.listarTrabajadores();
         request.setAttribute("listaTrabajador", trabajador);
         request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
-
     }
     
     private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -139,10 +138,11 @@ public class TrabajadorController extends HttpServlet {
                 String telefono = request.getParameter("telefono");
                 String cargo = request.getParameter("cargo");
                 double sueldo = Double.parseDouble(request.getParameter("sueldo"));
+                String estado = request.getParameter("estado");
 
                 // Verificas que todos los campos estén presentes
                 if (nombre != null && apellidos != null && nroIdentificacion != null && email != null
-                        && direccion != null && telefono != null && cargo != null && sueldo > 0) {
+                        && direccion != null && telefono != null && cargo != null && sueldo > 0 && estado!= null) {
 
                     try {
                         traDAO.actualizarTrabajador(
@@ -154,7 +154,8 @@ public class TrabajadorController extends HttpServlet {
                                 direccion,
                                 telefono,
                                 cargo,
-                                sueldo
+                                sueldo,
+                                estado
                         );
 
                         // Rediriges a la lista de trabajadores después de la actualización
