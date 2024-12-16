@@ -2,140 +2,132 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://unpkg.com/phosphor-icons" rel="stylesheet">
         <title>Dashboard Dolmar Bikes</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="CSS/estilos.css"/>
+        <link rel="stylesheet" href="CSS/dashboard.css"/>
     </head>
     <body>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3>Dolmar Bikes</h3>
-            <a href="/SistemaDolmarBike/ClienteController?accion=nuevo">Agregar Cliente</a>
-            <a href="/SistemaDolmarBike/ClienteController?accion=listar">Listar Clientes</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=nuevo">Nuevo Producto</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=listar">Listar Productos</a>
-            <a href="/SistemaDolmarBike/CategoriaController?accion=nuevo">Nueva Categoría</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
-            <a href="/SistemaDolmarBike/CategoriaController?accion=listar">Listar Categorias</a>
-            <a href="/SistemaDolmarBike/ProveedorController?accion=nuevo">Nuevo Proveedor</a>
-            <a href="/SistemaDolmarBike/ProveedorController?accion=listar">Listar Proveedores</a>
-            <a href="#">Nueva Venta</a>
-        </div>
-
-        <!-- Contenido Principal -->
-        <div class="main-content">
-            <div class="container">
-                <h1 class="mb-4">Bienvenido al Dashboard</h1>
-                <div class="row">
-                    <!-- Tarjetas para las acciones principales -->
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Agregar Cliente</h5>
-                                <p class="card-text">Registra un nuevo cliente en el sistema.</p>
-                                <a href="/SistemaDolmarBike/ClienteController?accion=nuevo" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
+        <div class="app">
+            <header class="app-header">
+                <div class="app-header-logo">
+                    <div class="logo">
+                        <span class="logo-icon">
+                            <img src="Images/logoDolmarBike.jpg" />
+                        </span>
+                        <h1 class="logo-title">
+                            <span>Dolmar Bikes</span>
+                            <span>Venta de Bicicletas</span>
+                        </h1>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Listar Clientes</h5>
-                                <p class="card-text">Consulta los clientes registrados.</p>
-                                <a href="/SistemaDolmarBike/ClienteController?accion=listar" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
+                </div>
+                <div class="app-header-navigation">
+                    <div class="tabs">
+                        <a href="Dashboard.jsp" class="active">Resumen</a>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Nuevo Producto</h5>
-                                <p class="card-text">Añade productos al inventario.</p>
-                                <a href="/SistemaDolmarBike/ProductoController?accion=nuevo" class="btn btn-primary">Ir</a>
-                            </div>
+                </div>
+                <div class="app-header-actions">
+                    <button class="user-profile">
+                        <span>Administrador</span>
+                        <span>
+                            <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+                        </span>
+                    </button>
+                </div>
+            </header>
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="Dashboard.jsp"><i class="fa fa-tachometer-alt"></i><span>Dashboard</span></a>
+                        <a href="/SistemaDolmarBike/CategoriaController?accion=listar"><i class="fa fa-th-large"></i><span>Categorias</span></a>
+                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"><i class="fa fa-box"></i><span>Productos</span></a>
+                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"><i class="fa fa-users"></i><span>Clientes</span></a>
+                        <a href="/SistemaDolmarBike/TrabajadorController?accion=listar"><i class="fa fa-user-tie"></i><span>Trabajadores</span></a>
+                        <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesion</span></a>
+                    </nav>
+                    <footer class="footer">
+                        <p>DolmarBike<small>©</small></p>
+                        <div>DolmarBikes ©<br />Algunos derechos reservados</div>
+                    </footer>
+                </div>
+                <div class="app-body-main-content">
+                    <section class="service-section">
+                        <h2>Servicios</h2>
+                        <div class="tiles">
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="fa fa-th-large"></i>
+                                    <h3>
+                                        <span>Categorias</span>
+                                        <span>Cree nuevas categorias para sus productos.</span>
+                                    </h3>
+                                </div>
+                                <a href="/SistemaDolmarBike/CategoriaController?accion=listar">
+                                    <span>Ir a la lista</span>
+                                    <span class="icon-button"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </article>
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="fa fa-box"></i>
+                                    <h3>
+                                        <span>Productos</span>
+                                        <span>Agregue nuevos productos y listelos</span>
+                                    </h3>
+                                </div>
+                                <a href="/SistemaDolmarBike/ProductoController?accion=listar">
+                                    <span>Ir a la lista</span>
+                                    <span class="icon-button"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </article>
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="fa fa-building"></i>
+                                    <h3>
+                                        <span>Proveedores</span>
+                                        <span>Lista de todos sus proveedores</span>
+                                    </h3>
+                                </div>
+                                <a href="/SistemaDolmarBike/ProveedorController?accion=listar">
+                                    <span>Ir a la lista</span>
+                                    <span class="icon-button"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </article>
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="fa fa-user-tie""></i>
+                                    <h3>
+                                        <span>Trabajadores</span>
+                                        <span>Aguegue nuevo empleados a la empresa</span>
+                                    </h3>
+                                </div>
+                                <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">
+                                    <span>Ir a la lista</span>
+                                    <span class="icon-button"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </article>
+                            <article class="tile">
+                                <div class="tile-header">
+                                    <i class="fa fa-users"></i>
+                                    <h3>
+                                        <span>Clientes</span>
+                                        <span>Agregue, Liste e elimine Clientes</span>
+                                    </h3>
+                                </div>
+                                <a href="/SistemaDolmarBike/ClienteController?accion=listar">
+                                    <span>Ir a la lista</span>
+                                    <span class="icon-button"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </article>
+                            
                         </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Listar Productos</h5>
-                                <p class="card-text">Visualiza todos los productos disponibles.</p>
-                                <a href="/SistemaDolmarBike/ProductoController?accion=listar" class="btn btn-primary">Ir</a>
-                            </div>
+                        <div class="service-section-footer">
+                            <p>Estamos trabajando para el modulo de venta 🙂 ....</p>
                         </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Nueva Categoría</h5>
-                                <p class="card-text">Crea categorías para los productos.</p>
-                                <a href="/SistemaDolmarBike/CategoriaController?accion=nuevo" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Nuevo Trabajador</h5>
-                                <p class="card-text">Registra trabajadores en el sistema.</p>
-                                <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Listar Trabajadores</h5>
-                                <p class="card-text">Consulta los trabajadores registrados.</p>
-                                <a href="/SistemaDolmarBike/TrabajadorController?accion=listar" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Listar Categorias</h5>
-                                <p class="card-text">Consulta las categorias registradas.</p>
-                                <a href="/SistemaDolmarBike/CategoriaController?accion=listar" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Nuevo Proveedor</h5>
-                                <p class="card-text">Registrar Proveedores en el sistema.</p>
-                                <a href="/SistemaDolmarBike/ProveedorController?accion=nuevo" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Listar Proveedores</h5>
-                                <p class="card-text">Consulta los proveedores registrados.</p>
-                                <a href="/SistemaDolmarBike/ProveedorController?accion=listar" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mt-4">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Nueva Venta</h5>
-                                <p class="card-text">Registra una nueva venta.</p>
-                                <a href="#" class="btn btn-primary">Ir</a>
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </div>
-
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
