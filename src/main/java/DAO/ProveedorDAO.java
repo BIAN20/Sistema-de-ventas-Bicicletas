@@ -100,11 +100,14 @@ public class ProveedorDAO {
                 proveedor.setDireccion(rs.getString("Direccion"));
                 proveedor.setTelefono(rs.getString("Telefono"));
                 proveedor.setEmail(rs.getString("Email"));
+                proveedor.setNombreEmpresa(rs.getString("nombreEmpresa"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new SQLException("Error al obtener el proveedor", e);
         } finally {
+            if (rs != null) {
+                rs.close();
+            }
             if (ps != null) {
                 ps.close();
             }
@@ -115,21 +118,22 @@ public class ProveedorDAO {
         return proveedor;
     }
 
-    public void actualizarProveedor(int idProveedor, String nombre, String apellidos, String dni, String direccion, String telefono, String email) throws SQLException {
-        String sql = "{CALL ActualizarProveedor(?, ?, ?, ?, ?, ?, ?)}";
+    public void actualizarProveedor(int idProveedor, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String nombreEmpresa) throws SQLException {
+        String sql = "{CALL ActualizarProveedor(?, ?, ?, ?, ?, ?, ?, ?)}";
         try {
             con = cn.getConnection();
             ps = con.prepareCall(sql);
             ps.setInt(1, idProveedor);
-            cs.setString(2, nombre);
-            cs.setString(3, apellidos);
-            cs.setString(4, dni);
-            cs.setString(5, direccion);
-            cs.setString(6, telefono);
-            cs.setString(7, email);
+            ps.setString(2, nombre);
+            ps.setString(3, apellidos);
+            ps.setString(4, dni);
+            ps.setString(5, direccion);
+            ps.setString(6, telefono);
+            ps.setString(7, email);
+            ps.setString(8, nombreEmpresa);
+
             ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new SQLException("Error al actualizar el Proveedor", e);
         } finally {
             if (ps != null) {
@@ -158,6 +162,7 @@ public class ProveedorDAO {
                 proveedor.setDireccion(rs.getString("direccion"));
                 proveedor.setTelefono(rs.getString("telefono"));
                 proveedor.setEmail(rs.getString("email"));
+                proveedor.setNombreEmpresa(rs.getString("nombreEmpresa"));
                 listaProveedores.add(proveedor);
             }
         } catch (SQLException e) {
@@ -181,22 +186,21 @@ public class ProveedorDAO {
     }
 
     public void eliminarProveedor(int idProveedor) throws SQLException {
-        String sql = "{CALL EliminarProveedor(?)}";  // Llamada al procedimiento almacenado
+        String sql = "{CALL EliminarProveedor(?)}";  
         try {
-            con = cn.getConnection();  // Obtiene la conexión
-            cs = con.prepareCall(sql);  // Prepara la llamada al procedimiento almacenado
-            cs.setInt(1, idProveedor);  // Asigna el parámetro idProveedor
-            cs.executeUpdate();  // Ejecuta el procedimiento almacenado
+            con = cn.getConnection();  
+            cs = con.prepareCall(sql);  
+            cs.setInt(1, idProveedor);  
+            cs.executeUpdate(); 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new SQLException("Error al eliminar el proveedor", e);  
+            throw new SQLException("Error al eliminar el proveedor", e);
         } finally {
-            // Cerramos los recursos
             if (cs != null) {
-                cs.close();  // Cierra el CallableStatement
+                cs.close(); 
             }
             if (con != null) {
-                con.close();  // Cierra la conexión
+                con.close(); 
             }
         }
     }

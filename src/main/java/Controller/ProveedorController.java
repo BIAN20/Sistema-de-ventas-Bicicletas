@@ -127,8 +127,10 @@ public class ProveedorController extends HttpServlet {
                 String email = request.getParameter("email");
                 String direccion = request.getParameter("direccion");
                 String telefono = request.getParameter("telefono");
+                String nombreEmpresa = request.getParameter("nombreEmpresa");
+
                 if (nombre != null && apellidos != null && nroIdentificacion != null && email != null
-                        && direccion != null && telefono != null) {
+                        && direccion != null && telefono != null && nombreEmpresa != null) {
                     try {
                         provDAO.actualizarProveedor(
                                 Integer.parseInt(idProveedor),
@@ -137,7 +139,8 @@ public class ProveedorController extends HttpServlet {
                                 nroIdentificacion,
                                 email,
                                 direccion,
-                                telefono
+                                telefono,
+                                nombreEmpresa
                         );
                         response.sendRedirect("ProveedorController?accion=listar");
                     } catch (SQLException e) {
@@ -176,17 +179,15 @@ public class ProveedorController extends HttpServlet {
     }
 
     private void eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idProveedor = request.getParameter("idProveedor");
-        if (idProveedor != null && !idProveedor.isEmpty()) {
-            try {
-                provDAO.eliminarProveedor(Integer.parseInt(idProveedor));
-                response.sendRedirect("ProveedorController?accion=listar");
-            } catch (SQLException ex) {
-                Logger.getLogger(ProveedorController.class.getName()).log(Level.SEVERE, null, ex);
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el Proveedor: " + ex.getMessage());
-            }
-        } else {
-            response.sendRedirect("ProveedorController?accion=listar");
+        try {
+            int idProveedor = Integer.parseInt(request.getParameter("id"));
+            provDAO.eliminarProveedor(idProveedor); // Llamamos a la capa de DAO para eliminar el producto
+            response.sendRedirect("/SistemaDolmarBike/ProveedorController?accion=listar");
+
+        } catch (NumberFormatException | SQLException ex) {
+            Logger.getLogger(ProductoController.class
+                    .getName()).log(Level.SEVERE, "Error al eliminar el proveedor", ex);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el proveedor.");
         }
     }
 }
