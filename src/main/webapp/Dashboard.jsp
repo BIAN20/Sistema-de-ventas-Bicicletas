@@ -21,6 +21,8 @@
             <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
             <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
             <a href="/SistemaDolmarBike/CategoriaController?accion=listar">Listar Categorias</a>
+            <a href="/SistemaDolmarBike/ProveedorController?accion=nuevo">Nuevo Proveedor</a>
+            <a href="/SistemaDolmarBike/ProveedorController?accion=listar">Listar Proveedores</a>
             <a href="#">Nueva Venta</a>
         </div>
 
@@ -99,6 +101,24 @@
                                 <h5 class="card-title">Listar Categorias</h5>
                                 <p class="card-text">Consulta las categorias registradas.</p>
                                 <a href="/SistemaDolmarBike/CategoriaController?accion=listar" class="btn btn-primary">Ir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Nuevo Proveedor</h5>
+                                <p class="card-text">Registrar Proveedores en el sistema.</p>
+                                <a href="/SistemaDolmarBike/ProveedorController?accion=nuevo" class="btn btn-primary">Ir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Listar Proveedores</h5>
+                                <p class="card-text">Consulta los proveedores registrados.</p>
+                                <a href="/SistemaDolmarBike/ProveedorController?accion=listar" class="btn btn-primary">Ir</a>
                             </div>
                         </div>
                     </div>

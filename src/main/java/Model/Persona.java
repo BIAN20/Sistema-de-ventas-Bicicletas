@@ -9,12 +9,11 @@ public class Persona {
     private String direccion;
     private String telefono;
     private String email;
-    private estadoPersona estado;
 
     public Persona() {
     }
 
-    public Persona(int idPersona, String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email, estadoPersona estado) {
+    public Persona(int idPersona, String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -22,7 +21,6 @@ public class Persona {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.estado = estado;
     }
 
     public int getIdPersona() {
@@ -81,12 +79,5 @@ public class Persona {
         this.email = email;
     }
 
-    public estadoPersona getEstado() {
-        return estado;
-    }
-
-    public void setEstado(estadoPersona estado) {
-        this.estado = estado;
-    }
 
 }

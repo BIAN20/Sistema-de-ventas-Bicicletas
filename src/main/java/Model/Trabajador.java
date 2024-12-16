@@ -15,8 +15,8 @@ public class Trabajador extends Persona {
         this.cargo = cargo;
     }
 
-    public Trabajador(int idTrabajador, double sueldo, String cargo, int idPersona, String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email, estadoPersona estado) {
-        super(idPersona, nombre, apellidos, nroIdentificacion, direccion, telefono, email, estado);
+    public Trabajador(int idTrabajador, double sueldo, String cargo, int idPersona, String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email) {
+        super(idPersona, nombre, apellidos, nroIdentificacion, direccion, telefono, email);
         this.idTrabajador = idTrabajador;
         this.sueldo = sueldo;
         this.cargo = cargo;
