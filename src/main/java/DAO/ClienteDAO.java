@@ -40,11 +40,6 @@ public class ClienteDAO {
                 tipoCliente.setNombreTipo(rs.getString(8));
                 cli.setTipoCliente(tipoCliente);
 
-                // Configurar Estado (mapeo a enum)
-                String estadoStr = rs.getString(9); // estado en String desde la BD
-                estadoPersona estado = estadoPersona.valueOf(estadoStr.toUpperCase()); // Mapeo a enum
-                //cli.setEstado(estado);
-
                 listar.add(cli);
             }
         } catch (SQLException e) {

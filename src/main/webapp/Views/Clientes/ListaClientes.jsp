@@ -53,7 +53,6 @@
                                 <th>E-mail</th>
                                 <th>Direccion</th>
                                 <th>Tipo Cliente</th>
-                                <th>Estado</th> 
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -75,7 +74,6 @@
                                     <td>${cli.telefono}</td>
                                     <td>${cli.email}</td>
                                     <td>${cli.tipoCliente.nombreTipo}</td>
-                                    <td>${cli.estado}</td>
                                     <td>
                                         <!-- Botón para editar el cliente -->
                                         <a href="ClienteController?accion=actualizar&idCliente=${cli.idCliente}" class="btn btn-warning btn-sm">

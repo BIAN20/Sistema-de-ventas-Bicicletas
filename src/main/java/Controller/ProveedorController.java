@@ -95,13 +95,11 @@ public class ProveedorController extends HttpServlet {
                 request.getRequestDispatcher(PAG_NUEVO).forward(request, response);
                 return;
             }
-
             if (nroIdentificacion == null || nroIdentificacion.trim().isEmpty()) {
                 request.setAttribute("error", "El número de identificación es obligatorio.");
                 request.getRequestDispatcher(PAG_NUEVO).forward(request, response);
                 return;
             }
-
             // Validar correo electrónico (opcional)
             if (email != null && !email.trim().isEmpty()) {
                 if (!email.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
@@ -110,49 +108,14 @@ public class ProveedorController extends HttpServlet {
                     return;
                 }
             }
-
             provDAO.registrarProveedor(nombre, apellidos, nroIdentificacion, direccion, telefono, email, nombreEmpresa);
             response.sendRedirect("ProveedorController?accion=listar");
-
         } catch (ServletException | IOException e) {
             request.setAttribute("error", "Error inesperado: " + e.getMessage());
             request.getRequestDispatcher(PAG_NUEVO).forward(request, response);
         }
     }
 
-    /*
-    private void nuevo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-    try {
-        // Obtener parámetros del formulario
-            String nombre = request.getParameter("nombre");
-            String apellidos = request.getParameter("apellidos");
-            String nroIdentificacion = request.getParameter("nroIdentificacion");
-            String email = request.getParameter("email");
-            String direccion = request.getParameter("direccion");
-            String telefono = request.getParameter("telefono");
-  
-        // Validar los campos obligatorios
-        if (nombre == null || nombre.isEmpty() || email == null || email.isEmpty()) {
-            request.setAttribute("error", "El nombre y el email son obligatorios.");
-            request.getRequestDispatcher(PAG_NUEVO).forward(request, response);
-            return;
-        }
-
-        // Registrar el proveedor usando la capa DAO
-        ProveedorDAO proveedorDAO = new ProveedorDAO();
-        proveedorDAO.registrarProveedor(nombre, apellidos, nroIdentificacion, email, direccion, telefono);
-
-        // Redirigir a la lista de proveedores
-        response.sendRedirect("ProveedorController?accion=listar");
-        
-        } catch (ServletException |SQLException e) {
-        e.printStackTrace();
-        request.setAttribute("error", "Error inesperado: " + e.getMessage());
-            request.getRequestDispatcher(PAG_NUEVO).forward(request, response);
-        }
-    }*/
-    
-    
     private void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String idProveedor = request.getParameter("idProveedor");

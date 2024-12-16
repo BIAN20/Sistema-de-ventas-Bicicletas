@@ -82,8 +82,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <!-- Formulario para eliminar cliente -->
-                                        <form id="formEliminar_${prov.idProveedor}" action="ProveedorController" method="post" style="display:inline;">
+                                        <form id="formEliminar_${prov.idProveedor}" action="ProveedorController" method="POST" style="display:inline;">
                                             <input type="hidden" name="accion" value="eliminar">
                                             <input type="hidden" name="id" value="${prov.idProveedor}">
                                             <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(${prov.idProveedor})">

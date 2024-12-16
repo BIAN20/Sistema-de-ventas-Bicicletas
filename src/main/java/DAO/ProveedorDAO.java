@@ -56,7 +56,6 @@ public class ProveedorDAO {
         }
         return listar;
     }
- 
 
     public void registrarProveedor(String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email, String nombreEmpresa) throws SQLException {
         String sql = "{CALL RegistrarProveedor(?, ?, ?, ?, ?, ?, ?)}";
@@ -65,7 +64,7 @@ public class ProveedorDAO {
             ps = con.prepareCall(sql);
             ps.setString(1, nombre);
             ps.setString(2, apellidos);
-            ps.setString(3, nroIdentificacion); 
+            ps.setString(3, nroIdentificacion);
             ps.setString(4, direccion);
             ps.setString(5, telefono);
             ps.setString(6, email);
@@ -180,25 +179,24 @@ public class ProveedorDAO {
         }
         return listaProveedores;
     }
-    
 
-        public void eliminarProveedor(int idProveedor) throws SQLException {
-        String sql = "{CALL EliminarProveedor(?)}";
+    public void eliminarProveedor(int idProveedor) throws SQLException {
+        String sql = "{CALL EliminarProveedor(?)}";  // Llamada al procedimiento almacenado
         try {
-            con = cn.getConnection();
-            cs = con.prepareCall(sql);
-            cs.setInt(1, idProveedor);
-            cs.executeUpdate();
+            con = cn.getConnection();  // Obtiene la conexión
+            cs = con.prepareCall(sql);  // Prepara la llamada al procedimiento almacenado
+            cs.setInt(1, idProveedor);  // Asigna el parámetro idProveedor
+            cs.executeUpdate();  // Ejecuta el procedimiento almacenado
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new SQLException("Error al eliminar el trabajador", e);
+            throw new SQLException("Error al eliminar el proveedor", e);  
         } finally {
             // Cerramos los recursos
             if (cs != null) {
-                cs.close();
+                cs.close();  // Cierra el CallableStatement
             }
             if (con != null) {
-                con.close();
+                con.close();  // Cierra la conexión
             }
         }
     }
