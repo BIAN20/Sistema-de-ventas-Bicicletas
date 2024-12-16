@@ -88,7 +88,7 @@ public class ProveedorController extends HttpServlet {
             String direccion = request.getParameter("direccion");
             String telefono = request.getParameter("telefono");
             String email = request.getParameter("email");
-
+            String nombreEmpresa = request.getParameter("nombreEmpresa");
             // Validaciones básicas
             if (nombre == null || nombre.trim().isEmpty()) {
                 request.setAttribute("error", "El nombre del proveedor es obligatorio.");
@@ -111,7 +111,7 @@ public class ProveedorController extends HttpServlet {
                 }
             }
 
-            provDAO.registrarProveedor(nombre, apellidos, nroIdentificacion, direccion, telefono, email);
+            provDAO.registrarProveedor(nombre, apellidos, nroIdentificacion, direccion, telefono, email, nombreEmpresa);
             response.sendRedirect("ProveedorController?accion=listar");
 
         } catch (ServletException | IOException e) {
@@ -151,6 +151,8 @@ public class ProveedorController extends HttpServlet {
             request.getRequestDispatcher(PAG_NUEVO).forward(request, response);
         }
     }*/
+    
+    
     private void actualizar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String idProveedor = request.getParameter("idProveedor");

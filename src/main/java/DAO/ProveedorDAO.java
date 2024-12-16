@@ -33,6 +33,7 @@ public class ProveedorDAO {
                 prov.setDireccion(rs.getString(5));
                 prov.setTelefono(rs.getString(6));
                 prov.setEmail(rs.getString(7));
+                prov.setNombreEmpresa(rs.getString(8));
                 listar.add(prov);
             }
         } catch (SQLException e) {
@@ -57,8 +58,8 @@ public class ProveedorDAO {
     }
  
 
-    public void registrarProveedor(String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email) throws SQLException {
-        String sql = "{CALL RegistrarProveedor(?, ?, ?, ?, ?, ?}";
+    public void registrarProveedor(String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email, String nombreEmpresa) throws SQLException {
+        String sql = "{CALL RegistrarProveedor(?, ?, ?, ?, ?, ?, ?}";
         try {
             con = cn.getConnection();
             ps = con.prepareCall(sql);
@@ -68,6 +69,7 @@ public class ProveedorDAO {
             ps.setString(4, direccion);
             ps.setString(5, telefono);
             ps.setString(6, email);
+            ps.setString(7, nombreEmpresa);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

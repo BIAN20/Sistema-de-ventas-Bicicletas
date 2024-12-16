@@ -29,7 +29,7 @@
         <div class="container">
             <div class="form-container">
                 <h2>Registrar Nuevo Proveedor</h2>
-                <form action="ProveedorController?accion=nuevo" method="post">
+                <form action="ProveedorController?accion=nuevo" method="POST">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -54,6 +54,11 @@
                         <label for="email" class="form-label">E-mail</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="nombreEmpresa" class="form-label">Empresa</label>
+                        <input type="nonbreEmpresa" class="form-control" id="nombreEmpresa" name="nombreEmpresa" required>
+                    </div>
+                    
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary">Registrar</button>
                         <a href="ProveedorController?accion=listar" class="btn btn-secondary">Cancelar</a>

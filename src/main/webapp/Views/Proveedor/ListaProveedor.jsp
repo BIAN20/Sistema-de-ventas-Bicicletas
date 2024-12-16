@@ -54,6 +54,7 @@
                                 <th>Dirección</th>
                                 <th>Teléfono</th>
                                 <th>Email</th>
+                                <th>Empresa</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -74,6 +75,7 @@
                                     <td>${prov.direccion}</td>
                                     <td>${prov.telefono}</td>
                                     <td>${prov.email}</td>
+                                    <td>${prov.nombreEmpresa}</td>
                                     <td>
                                         <!-- Botón para editar el cliente -->
                                         <a href="ProveedorController?accion=actualizar&idProveedor=${prov.idProveedor}" class="btn btn-warning btn-sm">
