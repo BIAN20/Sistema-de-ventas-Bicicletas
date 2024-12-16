@@ -59,7 +59,7 @@ public class ProveedorDAO {
  
 
     public void registrarProveedor(String nombre, String apellidos, String nroIdentificacion, String direccion, String telefono, String email, String nombreEmpresa) throws SQLException {
-        String sql = "{CALL RegistrarProveedor(?, ?, ?, ?, ?, ?, ?}";
+        String sql = "{CALL RegistrarProveedor(?, ?, ?, ?, ?, ?, ?)}";
         try {
             con = cn.getConnection();
             ps = con.prepareCall(sql);
