@@ -61,6 +61,11 @@
                     <label for="telefono" class="form-label">Teléfono:</label>
                     <input type="text" class="form-control" name="telefono" value="${proveedor.telefono}" required />
                 </div>
+                
+                <div class="mb-3">
+                    <label for="nombreEmpresa" class="form-label">Nombre Empresa</label>
+                    <input type="text" class="form-control" name="nombreEmpresa" value="${proveedor.nombreEmpresa}" required />
+                </div>
 
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary me-2">Actualizar</button>
