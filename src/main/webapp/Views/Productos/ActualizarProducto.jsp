@@ -8,78 +8,157 @@
         <title>Actualizar Producto</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-        <link rel="stylesheet" href="CSS/estilos.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Krub:wght@200;700&display=swap"
+            rel="stylesheet"
+            />
+        <link rel="stylesheet" href="CSS/forms.css"/>
     </head>
     <body>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3>Dolmar Bikes</h3>
-            <a href="/SistemaDolmarBike/ClienteController?accion=nuevo"><i class="fa fa-user-plus"></i> Agregar Cliente</a>
-            <a href="/SistemaDolmarBike/ClienteController?accion=listar"><i class="fa fa-users"></i> Listar Clientes</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=nuevo"><i class="fa fa-box"></i> Nuevo Producto</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=listar"><i class="fa fa-list"></i> Listar Productos</a>
-            <a href="/SistemaDolmarBike/CategoriaController?accion=nueva"><i class="fa fa-tags"></i> Nueva Categoría</a>
-            <a href="#"><i class="fa fa-shopping-cart"></i> Nueva Venta</a>
-        </div>
-
-        <!-- Main Content -->
-        <div class="container">
-            <div class="card">
-                <h2>Actualizar Producto</h2>
-                <form action="ProductoController?accion=actualizar" method="POST">
-                    <input type="hidden" name="idProducto" value="${producto.idProducto}" />
-
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre del Producto:</label>
-                        <input type="text" class="form-control" name="nombre" value="${producto.nombreProducto}" required />
+        <div class="app">
+            <header class="app-header">
+                <div class="app-header-logo">
+                    <div class="logo">
+                        <span class="logo-icon">
+                            <img src="Images/logoDolmarBike.jpg" />
+                        </span>
+                        <h1 class="logo-title">
+                            <span>Dolmar Bikes</span>
+                            <span>Venta de Bicicletas</span>
+                        </h1>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripción:</label>
-                        <textarea class="form-control" name="descripcion" required>${producto.descripcion}</textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="precio" class="form-label">Precio:</label>
-                        <input type="number" step="0.01" class="form-control" name="precio" value="${producto.precio}" required />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="stock" class="form-label">Stock:</label>
-                        <input type="number" class="form-control" name="stock" value="${producto.stock}" required />
-                    </div>
-
-                    <div class="mb-3">
-                    <label for="categoria" class="form-label">Categoría</label>
-                    <select class="form-select" id="categoria" name="categoria" required>
-                        <option value="">Seleccione una categoría</option>
-                        <%
-                            List<CategoriaProducto> categorias = (List<CategoriaProducto>) request.getAttribute("categorias");
-                            if (categorias != null && !categorias.isEmpty()) {
-                                for (CategoriaProducto categoria : categorias) {
-                        %>
-                        <option value="<%= categoria.getNombreCat()%>"><%= categoria.getNombreCat()%></option>
-                        <%
-                            }
-                        } else {
-                        %>
-                        <option value="" disabled>No hay categorías disponibles</option>
-                        <%
-                            }
-                        %>
-                    </select>
                 </div>
-
-
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary me-2">Actualizar</button>
-                        <a href="ProductoController?accion=listar" class="btn btn-secondary">Cancelar</a>
+                <div class="app-header-navigation">
+                    <div class="tabs">
+                        <a
+                            href="Dashboard.jsp"
+                            class="active"
+                            >Resumen</a
+                        >
                     </div>
-                </form>
+                </div>
+                <div class="app-header-actions">
+                    <button class="user-profile">
+                        <span>Administrador</span>
+                        <span>
+                            <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+                        </span>
+                    </button>
+                </div>
+            </header>
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="Dashboard.jsp"><i class="fa fa-tachometer-alt"></i><span>Dashboard</span></a>
+                        <a href="/SistemaDolmarBike/CategoriaController?accion=listar"
+                           ><i class="fa fa-th-large"></i><span>Categorias</span></a
+                        >
+                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"
+                           ><i class="fa fa-box"></i><span>Productos</span></a
+                        >
+                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"
+                           ><i class="fa fa-users"></i><span>Clientes</span></a
+                        >
+                        <a href="/SistemaDolmarBike/TrabajadorController?accion=listar"
+                           ><i class="fa fa-user-tie"></i><span>Trabajadores</span></a
+                        >
+                        <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesion</span></a>
+                    </nav>
+                    <footer class="footer">
+                        <p>DolmarBike<small>©</small></p>
+                        <div>DolmarBikes ©<br />Algunos derechos reservados</div>
+                    </footer>
+                </div>
+                <div class="app-body-main-content">
+                    <section class="service-section">
+                        <h2>Actualizar Producto</h2>
+                        <form
+                            class="form"
+                            action="ProductoController?accion=actualizar"
+                            method="post"
+                            >
+                            <input type="hidden" name="idProducto" value="${producto.idProducto}" />
+                            <label>
+                                <input
+                                    required=""
+                                    placeholder=""
+                                    type="text"
+                                    class="input"
+                                    value="${producto.nombreProducto}"
+                                    name="nombreProducto"
+                                    />
+                                <span>Nombre Producto</span>
+                            </label>
+
+                            <div class="flex">
+                                <label>
+                                    <input
+                                        required
+                                        placeholder=""
+                                        step="0.01"
+                                        type="number"
+                                        class="input"
+                                        value="${producto.precio}"
+                                        name="precio"
+                                        />
+                                    <span>Precio</span>
+                                </label>
+
+                                <label>
+                                    <input
+                                        required
+                                        placeholder=""
+                                        type="number"
+                                        class="input"
+                                        value="${producto.stock}"
+                                        name="stock"
+                                        />
+                                    <span>Stock</span>
+                                </label>
+                            </div>
+
+                            <label>
+                                <input
+                                    required=""
+                                    placeholder=""
+                                    type="text"
+                                    class="input"
+                                    value="${producto.descripcion}"
+                                    name="descripcion"
+                                    />
+                                <span>Descripción</span>
+                            </label>
+
+                            <label for="categoria">
+                                <select class="input" id="categoria" name="categoria" required>
+                                    <option value=""disabled selected></option>
+                                    <%
+                                        List<CategoriaProducto> categorias = (List<CategoriaProducto>) request.getAttribute("categorias");
+                                        if (categorias != null && !categorias.isEmpty()) {
+                                            for (CategoriaProducto categoria : categorias) {
+                                    %>
+                                    <option value="<%= categoria.getNombreCat()%>"><%= categoria.getNombreCat()%></option>
+                                    <%
+                                        }
+                                    } else {
+                                    %>
+                                    <option value="" disabled>No hay categorías disponibles</option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+
+                                <span>Categoria</span>
+                            </label>
+
+                            <button class="submit">Actualizar</button>
+                        </form>
+                    </section>
+                </div>
             </div>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

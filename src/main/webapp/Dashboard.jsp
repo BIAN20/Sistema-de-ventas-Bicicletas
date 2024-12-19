@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link href="https://unpkg.com/phosphor-icons" rel="stylesheet">
         <title>Dashboard Dolmar Bikes</title>
-        <link rel="stylesheet" href="CSS/dashboard.css"/>
+        <link rel="stylesheet" href="CSS/listasStyles.css"/>
     </head>
     <body>
         <div class="app">
