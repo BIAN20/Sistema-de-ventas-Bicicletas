@@ -18,10 +18,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Krub:wght@200;700&display=swap"
-            rel="stylesheet"
-            />
+        <link href="https://fonts.googleapis.com/css2?family=Krub:wght@200;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="CSS/forms.css"/>
     </head>
     <body>
@@ -41,22 +38,17 @@
                 </div>
                 <div class="app-header-navigation">
                     <div class="tabs">
-                        <a
-                            href="Dashboard.jsp"
-                            class="active"
-                            >Resumen</a
-                        >
+                        <a href="Dashboard.jsp" class="active">Resumen</a>
                     </div>
                 </div>
                 <div class="app-header-actions">
                     <button class="user-profile">
                         <span>Administrador</span>
-                        <span>
-                            <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
-                        </span>
+                        <span><img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" /></span>
                     </button>
                 </div>
             </header>
+
             <div class="app-body">
                 <div class="app-body-navigation">
                     <nav class="navigation">
@@ -86,24 +78,22 @@
                         <div>DolmarBikes ©<br />Algunos derechos reservados</div>
                     </footer>
                 </div>
+
                 <div class="app-body-main-content">
                     <section class="service-section">
                         <h2>Actualizar Producto</h2>
-                        <form
-                            class="form"
-                            action="ProductoController?accion=actualizar"
-                            method="post"
-                            >
+                        <form class="form" action="ProductoController?accion=actualizar" method="post">
                             <input type="hidden" name="idProducto" value="${producto.idProducto}" />
+
                             <label>
                                 <input
-                                    required=""
+                                    required
                                     placeholder=""
                                     type="text"
                                     class="input"
                                     value="${producto.nombreProducto}"
-                                    name="nombreProducto"
-                                    />
+                                    name="nombre"
+                                />
                                 <span>Nombre Producto</span>
                             </label>
 
@@ -117,7 +107,7 @@
                                         class="input"
                                         value="${producto.precio}"
                                         name="precio"
-                                        />
+                                    />
                                     <span>Precio</span>
                                 </label>
 
@@ -129,43 +119,31 @@
                                         class="input"
                                         value="${producto.stock}"
                                         name="stock"
-                                        />
+                                    />
                                     <span>Stock</span>
                                 </label>
                             </div>
 
                             <label>
                                 <input
-                                    required=""
+                                    required
                                     placeholder=""
                                     type="text"
                                     class="input"
                                     value="${producto.descripcion}"
                                     name="descripcion"
-                                    />
+                                />
                                 <span>Descripción</span>
                             </label>
 
                             <label for="categoria">
                                 <select class="input" id="categoria" name="categoria" required>
-                                    <option value=""disabled selected></option>
-                                    <%
-                                        List<CategoriaProducto> categorias = (List<CategoriaProducto>) request.getAttribute("categorias");
-                                        if (categorias != null && !categorias.isEmpty()) {
-                                            for (CategoriaProducto categoria : categorias) {
-                                    %>
-                                    <option value="<%= categoria.getNombreCat()%>"><%= categoria.getNombreCat()%></option>
-                                    <%
-                                        }
-                                    } else {
-                                    %>
-                                    <option value="" disabled>No hay categorías disponibles</option>
-                                    <%
-                                        }
-                                    %>
+                                    <option value="" disabled selected>Seleccione una categoría</option>
+                                    <c:forEach var="categoria" items="${categorias}">
+                                        <option value="${categoria.nombreCat}">${categoria.nombreCat}</option>
+                                    </c:forEach>
                                 </select>
-
-                                <span>Categoria</span>
+                                <span>Categoría</span>
                             </label>
 
                             <button class="submit">Actualizar</button>

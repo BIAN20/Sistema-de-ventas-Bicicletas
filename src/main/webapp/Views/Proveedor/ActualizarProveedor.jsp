@@ -30,11 +30,7 @@
                 </div>
                 <div class="app-header-navigation">
                     <div class="tabs">
-                        <a
-                            href="Dashboard.jsp"
-                            class="active"
-                            >Resumen</a
-                        >
+                        <a href="Dashboard.jsp" class="active">Resumen</a>
                     </div>
                 </div>
                 <div class="app-header-actions">
@@ -50,19 +46,11 @@
                 <div class="app-body-navigation">
                     <nav class="navigation">
                         <a href="Dashboard.jsp"><i class="fa fa-tachometer-alt"></i><span>Dashboard</span></a>
-                        <a href="/SistemaDolmarBike/CategoriaController?accion=listar"
-                           ><i class="fa fa-th-large"></i><span>Categorias</span></a
-                        >
-                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"
-                           ><i class="fa fa-box"></i><span>Productos</span></a
-                        >
-                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"
-                           ><i class="fa fa-users"></i><span>Clientes</span></a
-                        >
-                        <a href="/SistemaDolmarBike/TrabajadorController?accion=listar"
-                           ><i class="fa fa-user-tie"></i><span>Trabajadores</span></a
-                        >
-                        <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesion</span></a>
+                        <a href="/SistemaDolmarBike/CategoriaController?accion=listar"><i class="fa fa-th-large"></i><span>Categorías</span></a>
+                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"><i class="fa fa-box"></i><span>Productos</span></a>
+                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"><i class="fa fa-users"></i><span>Clientes</span></a>
+                        <a href="/SistemaDolmarBike/TrabajadorController?accion=listar"><i class="fa fa-user-tie"></i><span>Trabajadores</span></a>
+                        <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
                     </nav>
                     <footer class="footer">
                         <p>DolmarBike<small>©</small></p>
@@ -71,100 +59,48 @@
                 </div>
                 <div class="app-body-main-content">
                     <section class="service-section">
-                        <h2>Aactualizar Proveedor</h2>
-                        <form
-                            class="form"
-                            action="ProveedorController?accion=actualizar"
-                            method="post"
-                            >
+                        <h2>Actualizar Proveedor</h2>
+                        <form class="form" action="ProveedorController?accion=actualizar" method="post">
+                            <input type="hidden" name="idProveedor" value="${proveedor.idProveedor}" />
+
                             <div class="flex">
                                 <label>
-                                    <input
-                                        required
-                                        placeholder=""
-                                        type="text"
-                                        class="input"
-                                        value="${proveedor.nombre}"
-                                        name="nombre"
-                                        />
+                                    <input required placeholder="" type="text" class="input" value="${proveedor.nombre}" name="nombre" />
                                     <span>Nombres</span>
                                 </label>
-
                                 <label>
-                                    <input
-                                        required
-                                        placeholder=""
-                                        type="text"
-                                        class="input"
-                                        value="${proveedor.apellidos}"
-                                        name="apellidos"
-                                        />
+                                    <input required placeholder="" type="text" class="input" value="${proveedor.apellidos}" name="apellidos" />
                                     <span>Apellidos</span>
                                 </label>
                             </div>
 
                             <div class="flex">
                                 <label>
-                                    <input
-                                        required
-                                        placeholder=""
-                                        type="text"
-                                        class="input"
-                                        value="${proveedor.nroIdentificacion}"
-                                        name="nroIdentificacion"
-                                        />
+                                    <input required placeholder="" type="text" class="input" value="${proveedor.nroIdentificacion}" name="nroIdentificacion" />
                                     <span>DNI</span>
                                 </label>
-
                                 <label>
-                                    <input
-                                        required
-                                        placeholder=""
-                                        type="text"
-                                        class="input"
-                                        value="${proveedor.telefono}"
-                                        name="telefono"
-                                        />
-                                    <span>Telefono</span>
+                                    <input required placeholder="" type="text" class="input" value="${proveedor.telefono}" name="telefono" />
+                                    <span>Teléfono</span>
                                 </label>
                             </div>
 
                             <label>
-                                <input
-                                    required=""
-                                    placeholder=""
-                                    type="email"
-                                    class="input"
-                                    value="${proveedor.email}"
-                                    name="email"
-                                    />
+                                <input required placeholder="" type="email" class="input" value="${proveedor.email}" name="email" />
                                 <span>Email</span>
                             </label>
 
                             <label>
-                                <input
-                                    required
-                                    placeholder=""
-                                    type="text"
-                                    class="input"
-                                    value="${proveedor.direccion}"
-                                    name="direccion"
-                                    />
-                                <span>Direccion</span>
+                                <input required placeholder="" type="text" class="input" value="${proveedor.direccion}" name="direccion" />
+                                <span>Dirección</span>
                             </label>
 
                             <label>
-                                <input
-                                    required
-                                    placeholder=""
-                                    type="text"
-                                    class="input"
-                                    value="${proveedor.nombreEmpresa}"
-                                    name="nombreEmpresa"
-                                    />
+                                <input required placeholder="" type="text" class="input" value="${proveedor.nombreEmpresa}" name="nombreEmpresa" />
                                 <span>Empresa</span>
                             </label>
-                            <button class="submit">Registrar</button>
+
+                            <button class="submit">Actualizar</button>
                         </form>
                     </section>
                 </div>
