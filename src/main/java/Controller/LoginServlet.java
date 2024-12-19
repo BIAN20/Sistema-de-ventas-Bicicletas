@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
@@ -36,26 +37,23 @@ public class LoginServlet extends HttpServlet {
         Usuario user = userDAO.autenticarUsuario(usuario, contraseña);
 
         if (user != null) {
-            int idRol = user.getIdRol();
+            // Almacenar el usuario y rol en la sesión
+            HttpSession session = request.getSession();
+            session.setAttribute("usuario", user.getUser());
+            session.setAttribute("rol", user.getIdRol());
 
-            switch (idRol) {
-                case 1:
-                    response.sendRedirect("Dashboard.jsp");
-                    break;
-                case 2:
-                    response.sendRedirect("DashboardVendedor.jsp");
-                    break;
-                default:
-                    response.sendRedirect("login.jsp?error=3");
-                    break;
-            }
+            // Redirigir según el rol
+            response.sendRedirect("Dashboard.jsp"); // Administrador
+
         } else {
-            response.sendRedirect("login.jsp?error=1");
+            response.sendRedirect("login.jsp?error=1"); // Usuario no encontrado
         }
-    }
+    
 
-    @Override
-    public String getServletInfo() {
+}
+
+@Override
+public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

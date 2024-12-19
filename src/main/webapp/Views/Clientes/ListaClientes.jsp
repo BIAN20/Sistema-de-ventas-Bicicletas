@@ -1,5 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    // Validar sesión
+    if (session.getAttribute("usuario") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -49,21 +56,25 @@
                 <div class="app-body-navigation">
                     <nav class="navigation">
                         <a href="Dashboard.jsp"><i class="fa fa-tachometer-alt"></i><span>Dashboard</span></a>
-                                <c:if test="${sessionScope.rol == 'Administrador'}">
-                            <a href="/SistemaDolmarBike/CategoriaController?accion=listar"
-                               ><i class="fa fa-th-large"></i><span>Categorias</span></a
-                            >
+
+                        <!-- Opciones visibles solo para Administrador -->
+                        <c:if test="${sessionScope.rol == 1}">
+                            <a href="/SistemaDolmarBike/CategoriaController?accion=listar">
+                                <i class="fa fa-th-large"></i><span>Categorías</span>
+                            </a>
                             <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">
                                 <i class="fa fa-user-tie"></i><span>Trabajadores</span>
                             </a>
                         </c:if>
-                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"
-                           ><i class="fa fa-box"></i><span>Productos</span></a
-                        >
-                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"
-                           ><i class="fa fa-users"></i><span>Clientes</span></a
-                        >
-                        <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesion</span></a>
+
+                        <!-- Opciones visibles para todos los roles -->
+                        <a href="/SistemaDolmarBike/ProductoController?accion=listar">
+                            <i class="fa fa-box"></i><span>Productos</span>
+                        </a>
+                        <a href="/SistemaDolmarBike/ClienteController?accion=listar">
+                            <i class="fa fa-users"></i><span>Clientes</span>
+                        </a>
+                        <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
                     </nav>
                     <footer class="footer">
                         <p>DolmarBike<small>©</small></p>
