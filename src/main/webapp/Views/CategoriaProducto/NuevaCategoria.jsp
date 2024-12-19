@@ -6,42 +6,105 @@
         <title>Nuevo Categoria</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="CSS/estilos.css"/> 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Krub:wght@200;700&display=swap"
+            rel="stylesheet"
+            />
+        <link rel="stylesheet" href="CSS/forms.css"/> 
     </head>
     <body>
-        
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3>Dolmar Bikes</h3>
-            <a href="/SistemaDolmarBike/ClienteController?accion=nuevo">Agregar Cliente</a>
-            <a href="/SistemaDolmarBike/ClienteController?accion=listar">Listar Clientes</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=nuevo">Nuevo Producto</a>
-            <a href="/SistemaDolmarBike/ProductoController?accion=listar">Listar Productos</a>
-            <a href="/SistemaDolmarBike/CategoriaController?accion=nuevo">Nueva Categoría</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=nuevo">Nuevo Trabajador</a>
-            <a href="/SistemaDolmarBike/TrabajadorController?accion=listar">Listar Trabajadores</a>
-            <a href="#">Nueva Venta</a>
-        </div>
+        <div class="app">
+            <header class="app-header">
+                <div class="app-header-logo">
+                    <div class="logo">
+                        <span class="logo-icon">
+                            <img src="Images/logoDolmarBike.jpg" />
+                        </span>
+                        <h1 class="logo-title">
+                            <span>Dolmar Bikes</span>
+                            <span>Venta de Bicicletas</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="app-header-navigation">
+                    <div class="tabs">
+                        <a
+                            href="Dashboard.jsp"
+                            class="active"
+                            >Resumen</a
+                        >
+                    </div>
+                </div>
+                <div class="app-header-actions">
+                    <button class="user-profile">
+                        <span>Administrador</span>
+                        <span>
+                            <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+                        </span>
+                    </button>
+                </div>
+            </header>
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="Dashboard.jsp"><i class="fa fa-tachometer-alt"></i><span>Dashboard</span></a>
+                        <a href="/SistemaDolmarBike/CategoriaController?accion=listar"
+                           ><i class="fa fa-th-large"></i><span>Categorias</span></a
+                        >
+                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"
+                           ><i class="fa fa-box"></i><span>Productos</span></a
+                        >
+                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"
+                           ><i class="fa fa-users"></i><span>Clientes</span></a
+                        >
+                        <a href="/SistemaDolmarBike/TrabajadorController?accion=listar"
+                           ><i class="fa fa-user-tie"></i><span>Trabajadores</span></a
+                        >
+                        <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesion</span></a>
+                    </nav>
+                    <footer class="footer">
+                        <p>DolmarBike<small>©</small></p>
+                        <div>DolmarBikes ©<br />Algunos derechos reservados</div>
+                    </footer>
+                </div>
+                <div class="app-body-main-content">
+                    <section class="service-section">
+                        <h2>Nueva Categoria</h2>
+                        <form
+                            class="form"
+                            action="CategoriaController?accion=nuevo"
+                            method="post"
+                            >
+                            <label>
+                                <input
+                                    required
+                                    placeholder=""
+                                    type="text"
+                                    class="input"
+                                    id="nombrecat"
+                                    name="nombrecat"
+                                    />
+                                <span>Nombre Categoria</span>
+                            </label>
 
-        
-        <div class="container">
-            <div class="form-container">
-                <h2>Registrar Nueva Categoria</h2>
-                <form action="CategoriaController?accion=nuevo" method="post">
-                    <div class="mb-3">
-                        <label for="nombrecat" class="form-label">Nombre Categoria</label>
-                        <input type="text" class="form-control" id="nombrecat" name="nombrecat" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
-                    </div>
-                    
-                    <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
-                        <a href="ProductoController?accion=listar" class="btn btn-secondary">Cancelar</a>
-                    </div>
-                </form>
+                            <label>
+                                <input
+                                    required
+                                    placeholder=""
+                                    type="text"
+                                    class="input"
+                                    id="descripcion"
+                                    name="descripcion"
+                                    />
+                                <span>Descripcion</span>
+                            </label>
+
+                            <button class="submit">Registrar</button>
+                        </form>
+                    </section>
+                </div>
             </div>
         </div>
 
