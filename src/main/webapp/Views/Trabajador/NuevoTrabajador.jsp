@@ -166,6 +166,9 @@
                                         <option value=""disabled selected></option>
                                         <option value="Vendedor">Vendedor</option>
                                         <option value="Cajero">Cajero</option>
+                                        <option value="Vendedor">Gerente de Tienda</option>
+                                        <option value="Cajero">Técnico de Reparación</option>
+                                        <option value="Vendedor">Encargado de Inventario</option>
                                     </select>
                                     <span>Cargo</span>
                                 </label>

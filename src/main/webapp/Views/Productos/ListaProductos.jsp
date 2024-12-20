@@ -100,7 +100,7 @@
                         <h2>Lista de Productos</h2>
                         <div class="service-section-header">  
                             <a href="ProductoController?accion=nuevo"  class="flat-button">
-                                <i class="fa fa-box"> </i>
+                                <i class="fa fa-plus"> </i>
                             </a>
                             <div class="search-field">
                                 <form action="ProductoController?accion=buscar" method="get">

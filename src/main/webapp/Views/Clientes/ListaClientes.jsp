@@ -99,7 +99,7 @@
                         <h2>Lista de Clientes</h2>
                         <div class="service-section-header">  
                             <a href="ClienteController?accion=nuevo"  class="flat-button">
-                                <i class="fa fa-user-plus"> </i>   
+                                <i class="fa fa-plus"> </i>   
                             </a>
                             <div class="search-field">
                                 <form action="ClienteController?accion=buscar" method="get">

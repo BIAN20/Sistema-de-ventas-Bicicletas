@@ -51,9 +51,9 @@
                     <nav class="navigation">
                         <a href="Dashboard.jsp"><i class="fa fa-tachometer-alt"></i><span>Dashboard</span></a>
                         <a href="/SistemaDolmarBike/CategoriaController?accion=listar"><i class="fa fa-th-large"></i><span>Categorias</span></a>
-                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"><i class="fa fa-box"></i><span>Productos</span></a>
-                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"><i class="fa fa-users"></i><span>Clientes</span></a>
                         <a href="/SistemaDolmarBike/TrabajadorController?accion=listar"><i class="fa fa-user-tie"></i><span>Trabajadores</span></a>
+                        <a href="/SistemaDolmarBike/ProductoController?accion=listar"><i class="fa fa-box"></i><span>Productos</span></a>
+                        <a href="/SistemaDolmarBike/ClienteController?accion=listar"><i class="fa fa-users"></i><span>Clientes</span></a>                        
                         <a href="login.jsp"><i class="fa fa-sign-out-alt"></i><span>Cerrar Sesion</span></a>
                     </nav>
                     <footer class="footer">
@@ -66,7 +66,7 @@
                         <h2>Lista de Categorias</h2>
                         <div class="service-section-header">  
                             <a href="CategoriaController?accion=nuevo"  class="flat-button">
-                                <i class="fa fa-tags"> </i>
+                                <i class="fa fa-plus"> </i>
                             </a>
                             <div class="search-field">
                                 <form action="CategoriaController?accion=buscar" method="get">

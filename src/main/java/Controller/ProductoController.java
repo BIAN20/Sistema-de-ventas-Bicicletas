@@ -191,7 +191,7 @@ public class ProductoController extends HttpServlet {
         if (productos.isEmpty()) {
             request.setAttribute("mensaje", "No se encontraron productos que coincidan con el criterio de búsqueda.");
         }
-        request.setAttribute("producto", productos);
+        request.setAttribute("productos", productos);
         request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
     }
 
