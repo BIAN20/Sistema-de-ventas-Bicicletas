@@ -18,12 +18,14 @@ public class ClienteDAO {
     Connection con;
     Conexion cn = new Conexion();
 
-    public List<Cliente> listarClientes() {
+    public List<Cliente> listarClientesConPaginacion(int limite, int offset) {
         ArrayList<Cliente> listar = new ArrayList<>();
-        String sql = "{CALL ListarClientes()}";
+        String sql = "{CALL ListarClientesPaginados(?, ?)}";
         try {
             con = cn.getConnection();
             ps = con.prepareCall(sql);
+            ps.setInt(1, limite);
+            ps.setInt(2, offset);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Cliente cli = new Cliente();
@@ -44,7 +46,6 @@ public class ClienteDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         } finally {
             try {
                 if (rs != null) {
@@ -61,6 +62,36 @@ public class ClienteDAO {
             }
         }
         return listar;
+    }
+
+    public int contarClientes() {
+        String sql = "{CALL ContarClientes()}";
+        int total = 0;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareCall(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return total;
     }
 
     public void registrarCliente(String nombre, String apellidos, String nroIdentificacion, String email, String direccion, String telefono, String tipoCliente, String ruc) throws SQLException {

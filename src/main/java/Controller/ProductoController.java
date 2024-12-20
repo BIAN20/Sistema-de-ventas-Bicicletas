@@ -76,8 +76,22 @@ public class ProductoController extends HttpServlet {
     }
 
     private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Producto> productos = proDAO.listarProductos();
-        request.setAttribute("producto", productos);
+        int pagina = 1;
+        int limite = 10; // Productos por página
+
+        if (request.getParameter("pagina") != null) {
+            pagina = Integer.parseInt(request.getParameter("pagina"));
+        }
+
+        int offset = (pagina - 1) * limite; // Desplazamiento
+        List<Producto> productos = proDAO.listarProductosConPaginacion(limite, offset);
+        int totalProductos = proDAO.contarProductos();
+        int totalPaginas = (int) Math.ceil((double) totalProductos / limite);
+
+        request.setAttribute("productos", productos);
+        request.setAttribute("paginaActual", pagina);
+        request.setAttribute("totalPaginas", totalPaginas);
+
         request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
     }
 

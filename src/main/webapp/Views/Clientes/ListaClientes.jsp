@@ -150,6 +150,22 @@
                                 </c:forEach>
                             </tbody>
                         </table>
+                        <div class="pagination">
+                            <c:if test="${paginaActual > 1}">
+                                <a href="ClienteController?accion=listar&pagina=${paginaActual - 1}" class="btn btn-primary">Anterior</a>
+                            </c:if>
+
+                            <c:forEach var="i" begin="1" end="${totalPaginas}">
+                                <a href="ClienteController?accion=listar&pagina=${i}" 
+                                   class="btn ${paginaActual == i ? 'btn-secondary' : 'btn-primary'}">
+                                    ${i}
+                                </a>
+                            </c:forEach>
+
+                            <c:if test="${paginaActual < totalPaginas}">
+                                <a href="ClienteController?accion=listar&pagina=${paginaActual + 1}" class="btn btn-primary">Siguiente</a>
+                            </c:if>
+                        </div>
                     </section>
                 </div>
             </div>

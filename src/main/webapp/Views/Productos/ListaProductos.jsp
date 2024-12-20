@@ -113,15 +113,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <c:if test="${empty producto}">
+                                <c:if test="${empty productos}">
                                     <tr>
                                         <td colspan="7" class="text-center">No hay Productos registrados</td>
                                     </tr>
                                 </c:if>
 
-                                <!-- Itera sobre los productos -->
-                                <c:forEach var="pro" items="${producto}">
+                                <c:forEach var="pro" items="${productos}">
                                     <tr>
                                         <td>${pro.idProducto}</td>
                                         <td>${pro.nombreCat}</td>
@@ -130,11 +128,9 @@
                                         <td>${pro.stock}</td>
                                         <td>${pro.descripcion}</td>
                                         <td>
-                                            <!-- Botón para editar el producto -->
                                             <a href="ProductoController?accion=actualizar&idProducto=${pro.idProducto}" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-
                                             <form id="formEliminar_${pro.idProducto}" action="ProductoController" method="post" style="display:inline;">
                                                 <input type="hidden" name="accion" value="eliminar">
                                                 <input type="hidden" name="id" value="${pro.idProducto}">
@@ -147,6 +143,23 @@
                                 </c:forEach>
                             </tbody>
                         </table>
+                        <!-- Paginación -->
+                        <div class="pagination">
+                            <c:if test="${paginaActual > 1}">
+                                <a href="ProductoController?accion=listar&pagina=${paginaActual - 1}" class="btn btn-primary">Anterior</a>
+                            </c:if>
+
+                            <c:forEach var="i" begin="1" end="${totalPaginas}">
+                                <a href="ProductoController?accion=listar&pagina=${i}" 
+                                   class="btn ${paginaActual == i ? 'btn-secondary' : 'btn-primary'}">
+                                    ${i}
+                                </a>
+                            </c:forEach>
+
+                            <c:if test="${paginaActual < totalPaginas}">
+                                <a href="ProductoController?accion=listar&pagina=${paginaActual + 1}" class="btn btn-primary">Siguiente</a>
+                            </c:if>
+                        </div>
                     </section>
                 </div>
             </div>

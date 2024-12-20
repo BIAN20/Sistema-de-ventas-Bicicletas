@@ -18,12 +18,14 @@ public class ProductoDAO {
     Connection con;
     Conexion cn = new Conexion();
 
-    public List<Producto> listarProductos() {
+    public List<Producto> listarProductosConPaginacion(int limite, int offset) {
         ArrayList<Producto> listar = new ArrayList<>();
-        String sql = "{CALL ListarProductos()}";
+        String sql = "{CALL ListarProductosPaginados(?, ?)}";
         try {
             con = cn.getConnection();
             ps = con.prepareCall(sql);
+            ps.setInt(1, limite);
+            ps.setInt(2, offset);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Producto pro = new Producto();
@@ -33,12 +35,10 @@ public class ProductoDAO {
                 pro.setPrecio(rs.getDouble(4));
                 pro.setStock(rs.getInt(5));
                 pro.setDescripcion(rs.getString(6));
-
                 listar.add(pro);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         } finally {
             try {
                 if (rs != null) {
@@ -55,6 +55,36 @@ public class ProductoDAO {
             }
         }
         return listar;
+    }
+
+    public int contarProductos() {
+        String sql = "{CALL ContarProductos()}";
+        int total = 0;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareCall(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return total;
     }
 
     public void registrarProducto(String nombre, double precio, int stock, String descripcion, String nombreCat) throws SQLException {

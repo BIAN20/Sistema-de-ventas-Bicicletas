@@ -169,39 +169,20 @@
                                 <span>Direccion</span>
                             </label>
 
-                            <div class="flex">
-                                <label>
-                                    <select
-                                        required
-                                        name="tipoCliente"
-                                        id="tipoCliente"
-                                        class="input"
-                                        onchange="mostrarCampoRuc()"
-                                        >
-                                        <option value=""disabled selected></option>
-                                        <option value="natural">Natural</option>
-                                        <option value="juridico">Jurídico</option>
-                                    </select>
-                                    <span>Tipo Cliente</span>
-                                </label>
-
-                                <label
-                                    id="rucField"
-                                    style="display: none"
-                                    >
-                                    <input
-                                        required
-                                        placeholder=""
-                                        type="text"
-                                        class="input"
-                                        id="ruc"
-                                        name="ruc"
-                                        />
-                                    <span>R.U.C</span>
-                                </label>
+                            <div class="mb-3">
+                                <label for="tipoCliente" class="form-label">Tipo de Cliente</label>
+                                <select name="tipoCliente" id="tipoCliente" class="form-control" onchange="mostrarCampoRuc()">
+                                    <option value="natural">Natural</option>
+                                    <option value="juridico">Jurídico</option>
+                                </select>
                             </div>
-
-                            <button class="submit">Registrar</button>
+                            <div class="mb-3" id="rucField" style="display: none;">
+                                <label for="ruc" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="ruc" name="ruc">
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </div>
                         </form>
                     </section>
                 </div>

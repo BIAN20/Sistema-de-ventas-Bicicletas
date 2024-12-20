@@ -78,8 +78,22 @@ public class ClienteController extends HttpServlet {
     }// </editor-fold>
 
     private void listar(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
-        List<Cliente> clientes = cliDAO.listarClientes();
+        int pagina = 1;
+        int limite = 10; // Clientes por página
+
+        if (request.getParameter("pagina") != null) {
+            pagina = Integer.parseInt(request.getParameter("pagina"));
+        }
+
+        int offset = (pagina - 1) * limite; // Desplazamiento
+        List<Cliente> clientes = cliDAO.listarClientesConPaginacion(limite, offset);
+        int totalClientes = cliDAO.contarClientes();
+        int totalPaginas = (int) Math.ceil((double) totalClientes / limite);
+
         request.setAttribute("listaClientes", clientes);
+        request.setAttribute("paginaActual", pagina);
+        request.setAttribute("totalPaginas", totalPaginas);
+
         request.getRequestDispatcher(PAG_LISTAR).forward(request, response);
     }
 
