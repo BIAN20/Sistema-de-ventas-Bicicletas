@@ -49,12 +49,25 @@
                 </div>
                 <div class="app-header-actions">
                     <button class="user-profile">
-                        <span>Administrador</span>
+                        <span>
+                            <c:choose>
+                                <c:when test="${sessionScope.rol == 1}">
+                                    Administrador
+                                </c:when>
+                                <c:when test="${sessionScope.rol == 2}">
+                                    Trabajador
+                                </c:when>
+                                <c:otherwise>
+                                    Invitado
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
                         <span>
                             <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
                         </span>
                     </button>
                 </div>
+
             </header>
             <div class="app-body">
                 <div class="app-body-navigation">

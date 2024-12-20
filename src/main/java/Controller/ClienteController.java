@@ -85,7 +85,7 @@ public class ClienteController extends HttpServlet {
             pagina = Integer.parseInt(request.getParameter("pagina"));
         }
 
-        int offset = (pagina - 1) * limite; // Desplazamiento
+        int offset = (pagina - 1) * limite; 
         List<Cliente> clientes = cliDAO.listarClientesConPaginacion(limite, offset);
         int totalClientes = cliDAO.contarClientes();
         int totalPaginas = (int) Math.ceil((double) totalClientes / limite);
