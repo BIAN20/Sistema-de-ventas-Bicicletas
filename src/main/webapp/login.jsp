@@ -104,7 +104,7 @@
                         placeholder="Contraseña"
                         required
                         />
-                    <a href="#">¿olvidate tu contraseña?</a>
+                    
                     <button>Iniciar Sesión</button>
                 </form>
             </div>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1>Bienvenido!</h1>
-                        <p>Ingresa tus datos y comienza a inteactuar con nuestro sistema</p>
+                        <p>Ingresa tus datos y comienza a interactuar con nuestro sistema</p>
                     </div>
                 </div>
             </div>

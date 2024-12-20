@@ -118,10 +118,10 @@
                                     <th>ID</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
-                                    <th>DNI</th>                                                                
+                                    <th>DNI</th>
+                                    <th>Direccion</th>
                                     <th>Telefono</th>
                                     <th>E-mail</th>
-                                    <th>Direccion</th>
                                     <th>Tipo Cliente</th>
                                     <th>Opciones</th>
                                 </tr>
