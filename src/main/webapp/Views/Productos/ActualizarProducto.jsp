@@ -43,10 +43,25 @@
                 </div>
                 <div class="app-header-actions">
                     <button class="user-profile">
-                        <span>Administrador</span>
-                        <span><img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" /></span>
+                        <span>
+                            <c:choose>
+                                <c:when test="${sessionScope.rol == 1}">
+                                    Administrador
+                                </c:when>
+                                <c:when test="${sessionScope.rol == 2}">
+                                    Trabajador
+                                </c:when>
+                                <c:otherwise>
+                                    Invitado
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
+                        <span>
+                            <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+                        </span>
                     </button>
                 </div>
+
             </header>
 
             <div class="app-body">
@@ -93,7 +108,7 @@
                                     class="input"
                                     value="${producto.nombreProducto}"
                                     name="nombre"
-                                />
+                                    />
                                 <span>Nombre Producto</span>
                             </label>
 
@@ -107,7 +122,7 @@
                                         class="input"
                                         value="${producto.precio}"
                                         name="precio"
-                                    />
+                                        />
                                     <span>Precio</span>
                                 </label>
 
@@ -119,7 +134,7 @@
                                         class="input"
                                         value="${producto.stock}"
                                         name="stock"
-                                    />
+                                        />
                                     <span>Stock</span>
                                 </label>
                             </div>
@@ -132,7 +147,7 @@
                                     class="input"
                                     value="${producto.descripcion}"
                                     name="descripcion"
-                                />
+                                    />
                                 <span>Descripción</span>
                             </label>
 
