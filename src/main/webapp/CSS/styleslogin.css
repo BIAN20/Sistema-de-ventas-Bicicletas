@@ -2,6 +2,7 @@
 
 * {
 	box-sizing: border-box;
+    font-family: 'Krub', sans-serif;
 }
 
 body {
@@ -10,7 +11,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
+	
 	height: 100vh;
 	margin: -20px 0 50px;
 }
@@ -22,6 +23,7 @@ h1 {
 
 h2 {
 	text-align: center;
+    
 }
 
 p {
@@ -45,8 +47,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #004aad;
+	background-color: #004aad;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -159,9 +161,9 @@ input {
 }
 
 .overlay {
-	background: #FF416C;
+	background: #004aad;
 	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(to right, #004aad, #003d8b);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -215,7 +217,7 @@ input {
 }
 
 .social-container a {
-	border: 1px solid #DDDDDD;
+	border: 1px solid #004aad;;
 	border-radius: 50%;
 	display: inline-flex;
 	justify-content: center;
